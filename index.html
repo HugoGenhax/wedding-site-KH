@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Katie &amp; Hugo — Keystone, Colorado</title>
-<!-- Watercolour hero variant -->
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    TOKENS
@@ -24,7 +24,7 @@
   --cream:#F1EDE1;
   --cream-dim:rgba(241,237,225,.62);
 
-  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --display:"Marcellus", "Optima", Georgia, serif;
   --body:"Cormorant Garamond", Georgia, serif;
   --util:"Jost", "Helvetica Neue", Arial, sans-serif;
 
@@ -58,7 +58,7 @@ a{color:inherit}
 }
 .h2{
   font-family:var(--display);
-  font-weight:500;
+  font-weight:400;
   font-size:clamp(2rem,4.4vw,3.1rem);
   letter-spacing:.09em;
   text-transform:uppercase;
@@ -91,7 +91,7 @@ a{color:inherit}
 }
 .nav.is-on{opacity:1;transform:none;pointer-events:auto}
 .nav__mark{
-  font-family:var(--display);font-weight:500;font-size:.92rem;letter-spacing:.24em;
+  font-family:var(--display);font-size:.92rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--gold-soft);text-decoration:none;white-space:nowrap;
 }
 .nav__links{display:flex;flex-wrap:wrap;gap:clamp(.7rem,2vw,1.7rem);align-items:center}
@@ -134,7 +134,7 @@ a{color:inherit}
 /* ============================================================
    OVERTURE — envelope opens, descends, hero is revealed
    ============================================================ */
-.overture{position:relative;height:420vh}
+.overture{position:relative;height:680vh}
 .overture__sticky{
   position:sticky;top:0;height:100svh;overflow:hidden;
   perspective:1500px;perspective-origin:50% 38%;
@@ -158,7 +158,7 @@ a{color:inherit}
 .hero__plate{position:relative;text-align:center;padding:0 1.2rem;opacity:0}
 .hero__names{
   font-family:var(--display);
-  font-weight:600;
+  font-weight:400;
   font-size:clamp(3rem,13.5vw,9.5rem);
   line-height:.94;
   color:var(--gold);
@@ -168,7 +168,7 @@ a{color:inherit}
   text-shadow:0 2px 40px rgba(30,36,26,.75);
 }
 .hero__amp{
-  display:block;font-family:var(--display);font-weight:500;font-style:italic;text-transform:none;
+  display:block;font-family:var(--display);font-style:italic;text-transform:none;
   font-size:.36em;color:var(--gold-soft);letter-spacing:0;margin:.12em 0;opacity:.9;
 }
 .hero__meta{
@@ -179,7 +179,7 @@ a{color:inherit}
 /* pipe-rule date, echoing the card */
 .pipedate{display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,2vw,1.1rem);margin:1.6rem 0 0}
 .pipedate .w{font-family:var(--util);font-weight:400;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase}
-.pipedate .n{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,4.2vw,2.2rem);letter-spacing:.02em;line-height:1}
+.pipedate .n{font-family:var(--display);font-size:clamp(1.7rem,4.2vw,2.2rem);letter-spacing:.02em;line-height:1}
 .pipedate i{display:block;width:1px;height:2.1em;background:currentColor;opacity:.4}
 .hero__meta{justify-content:center}
 .hero__place{font-family:var(--body);font-style:italic;font-size:1.05rem;letter-spacing:.1em;color:var(--cream-dim);margin:.9rem 0 0}
@@ -459,7 +459,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   font-family:var(--util);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
   color:var(--gold);display:block;margin-bottom:.6rem;
 }
-.lock__title{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:.12em;
+.lock__title{font-family:var(--display);font-size:1.05rem;letter-spacing:.12em;
   text-transform:uppercase;color:var(--gold-soft);margin:0 0 .5rem}
 .lock__hint{color:var(--cream-dim);font-size:.95em;margin:0}
 .lock--inline{display:inline;padding:.1rem .5rem;border-radius:1px;white-space:nowrap}
@@ -467,7 +467,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 .gate{position:fixed;inset:0;z-index:300;display:none;background:rgba(24,29,20,.96);padding:1.4rem}
 .gate.is-open{display:grid;place-items:center}
 .gate__box{width:min(430px,100%);text-align:center}
-.gate__q{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,4.4vw,2rem);
+.gate__q{font-family:var(--display);font-size:clamp(1.4rem,4.4vw,2rem);
   letter-spacing:.06em;color:var(--gold-soft);margin:.6rem 0 1.4rem;line-height:1.3}
 .gate input{
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(201,166,98,.45);
@@ -503,7 +503,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 
 /* footer */
 .foot{padding:4rem 1.5rem 3.5rem;text-align:center;background:var(--olive-900);border-top:1px solid rgba(201,166,98,.2)}
-.foot__mark{font-family:var(--display);font-weight:500;font-size:1.3rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.foot__mark{font-family:var(--display);font-size:1.3rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .foot__meta{font-family:var(--util);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);margin-top:1rem}
 
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
@@ -516,21 +516,75 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   .reveal{opacity:1;transform:none;transition:none}
   .cue i{animation:none}
 }
+
+/* ---------- the wall ---------- */
+.wall{padding:clamp(5rem,13vh,9rem) clamp(1.2rem,6vw,3rem);text-align:center;background:var(--olive-900)}
+.wall__box{max-width:520px;margin:0 auto}
+.wall__q{font-family:var(--display);font-size:clamp(1.5rem,4.6vw,2.2rem);letter-spacing:.05em;
+  color:var(--gold-soft);margin:.8rem 0 1.6rem;line-height:1.3}
+.wall input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(201,166,98,.45);
+  color:var(--cream);font-family:var(--body);font-size:1.4rem;text-align:center;padding:.6rem .2rem;border-radius:0}
+.wall input:focus{outline:none;border-bottom-color:var(--gold)}
+.wall__note{font-family:var(--util);font-size:.68rem;letter-spacing:.16em;color:var(--cream-dim);
+  margin-top:1.2rem;min-height:1.3em}
+.wall__note.is-bad{color:#D9A08A}
+.wall .btn{margin:1.8rem auto 0}
+#private{display:none}
+#private.is-open{display:block}
+
+/* ---------- venue squares ---------- */
+.squares{display:grid;gap:clamp(6px,1vw,12px);grid-template-columns:1fr;margin-top:2.4rem}
+@media(min-width:820px){.squares{grid-template-columns:repeat(3,1fr)}}
+.square{
+  border:1px solid rgba(201,166,98,.26);padding:clamp(1.8rem,4vw,2.6rem) 1.6rem;
+  background:linear-gradient(180deg,rgba(78,92,63,.18),transparent);
+  display:flex;flex-direction:column;justify-content:space-between;min-height:clamp(220px,26vw,300px);
+}
+.square__day{font-family:var(--util);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.square__name{font-family:var(--display);font-size:clamp(1.2rem,2.6vw,1.6rem);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold-soft);margin:1.2rem 0 .6rem;line-height:1.2}
+.square__addr{color:var(--cream-dim);font-size:.97em;margin:0}
+
+/* ---------- adventures ---------- */
+.adv{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:2.4rem}
+@media(min-width:820px){.adv{grid-template-columns:repeat(3,1fr)}}
+.adv__card{
+  position:relative;border:1px solid rgba(201,166,98,.26);padding:1.7rem 1.5rem 1.4rem;
+  background:linear-gradient(180deg,rgba(78,92,63,.16),transparent);
+  cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;
+  transition:border-color .3s,background .3s;
+}
+.adv__card:hover{border-color:rgba(201,166,98,.6)}
+.adv__card.is-on{border-color:var(--gold);background:rgba(201,166,98,.12)}
+.adv__when{font-family:var(--util);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.adv__name{font-family:var(--display);font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold-soft);margin:.7rem 0 .6rem}
+.adv__card p{color:var(--cream-dim);font-size:.96em;margin:0 0 .8rem}
+.adv__meta{font-family:var(--util);font-size:.64rem;letter-spacing:.14em;color:var(--cream);text-transform:uppercase}
+.adv__tick{
+  position:absolute;top:1rem;right:1rem;width:20px;height:20px;border:1px solid rgba(201,166,98,.5);
+  border-radius:50%;display:grid;place-items:center;font-size:.7rem;color:var(--olive-900);background:transparent;
+}
+.adv__card.is-on .adv__tick{background:var(--gold);border-color:var(--gold)}
+.adv__card a{color:var(--gold-soft)}
+.basket{
+  margin-top:1.8rem;border-top:1px solid rgba(201,166,98,.24);padding-top:1.2rem;
+  font-family:var(--util);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);
+}
+.basket b{color:var(--gold-soft);font-weight:400}
 </style>
 </head>
 <body>
 
-<!-- ================= NAV ================= -->
 <header class="nav" id="nav">
   <a class="nav__mark" href="#top">Katie &amp; Hugo</a>
   <nav class="nav__links" id="navLinks">
-    <a href="#invitation">The Weekend</a>
     <a href="#photos">Photos</a>
-    <a href="#venue">Venue</a>
     <a href="#schedule">Schedule</a>
-    <a href="#stay">Stay</a>
-    <a href="things-to-do.html">Things to do</a>
-    <a href="hotels.html">Hotels</a>
+    <a href="#venue">Where</a>
+    <a href="#stay">Staying</a>
+    <a href="#adventures">Adventures</a>
+    <a href="#menu">Menu</a>
     <a href="#stories">Stories</a>
   </nav>
   <div class="nav__end">
@@ -609,7 +663,6 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   </div>
 </section>
 
-<!-- ================= BODY ================= -->
 <main>
 
   <section class="section" id="invitation">
@@ -621,293 +674,49 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     </div>
   </section>
 
-  <section class="paper" id="photos">
+  <section class="paper" id="card">
     <div class="wrap">
       <div class="reveal">
-        <span class="eyebrow">Save the date</span>
-        <h2 class="h2">The card</h2>
+        <span class="eyebrow">The card</span>
+        <h2 class="h2">Save the Date</h2>
       </div>
-
       <figure class="card-stage reveal">
-        <!-- the card -->
         <img src="photos/save-the-date.jpg" alt="Save the date: Katie Mudrick and Hugo Seureau, July 8 2027, Keystone, Colorado">
       </figure>
-
-      <div class="reveal" style="margin-top:clamp(3.5rem,9vw,6rem)">
-        <span class="eyebrow">Six pictures</span>
-        <h2 class="h2">Pick the best one</h2>
-        <p class="paper__intro">Tap any picture to read what was happening, then vote for your favourite. Everyone gets one vote, and you can change your mind. The standings stay hidden until you've cast yours.</p>
-      </div>
-
-      <div class="mosaic reveal" id="mosaic"></div>
-
-      <div class="standings reveal" id="standings" hidden>
-        <span class="eyebrow">Standings</span>
-        <div id="standRows"></div>
-      </div>
     </div>
   </section>
 
-  <!-- the riddle -->
-<div class="gate" id="gate" role="dialog" aria-modal="true" aria-label="Guests only">
-  <div class="gate__box">
-    <span class="lock__eyebrow">Guests only</span>
-    <p class="gate__q">What is our dog's name?</p>
-    <input id="gateAnswer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="One word">
-    <p class="gate__note" id="gateNote">It's on your invitation.</p>
-    <div class="gate__row">
-      <button class="btn--vote" id="gateGo" type="button">Unlock</button>
-      <button class="lb__x" id="gateX" type="button" style="position:static">Cancel</button>
+  <!-- the wall: everything below is encrypted until the riddle is answered -->
+  <section class="wall" id="wall">
+    <div class="wall__box reveal">
+      <span class="eyebrow">Guests only</span>
+      <p class="wall__q">What is our dog's name?</p>
+      <input id="wallAnswer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="One word">
+      <p class="wall__note" id="wallNote">It's on your invitation. Everything else — the schedule, the addresses, the pictures — is behind this.</p>
+      <button class="btn" id="wallGo" type="button">Unlock</button>
+    </div>
+  </section>
+
+  <div id="private"></div>
+
+</main>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo">
+  <button class="lb__x" id="lbClose" type="button">Close &times;</button>
+  <div class="lb__inner">
+    <div class="lb__frame"><div id="lbMedia"></div></div>
+    <p class="lb__story" id="lbStory"></p>
+    <div class="lb__actions">
+      <button class="btn--vote" id="lbVote" type="button">Vote for this one</button>
+      <span class="lb__tally" id="lbTally"></span>
+    </div>
+    <div class="lb__nav">
+      <button type="button" id="lbPrev">&larr; Previous</button>
+      <button type="button" id="lbNext">Next &rarr;</button>
     </div>
   </div>
 </div>
-
-<!-- lightbox -->
-  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo">
-    <button class="lb__x" id="lbClose" type="button">Close &times;</button>
-    <div class="lb__inner">
-      <div class="lb__frame"><div id="lbMedia"></div></div>
-      <p class="lb__story" id="lbStory"></p>
-      <div class="lb__actions">
-        <button class="btn--vote" id="lbVote" type="button">Vote for this one</button>
-        <span class="lb__tally" id="lbTally"></span>
-      </div>
-      <div class="lb__nav">
-        <button type="button" id="lbPrev">&larr; Previous</button>
-        <button type="button" id="lbNext">Next &rarr;</button>
-      </div>
-    </div>
-  </div>
-
-  <section class="section section--tint" id="venue">
-    <div class="wrap duo reveal">
-      <div class="duo__aside">
-        <span class="eyebrow">Three places</span>
-        <h2 class="h2">Where</h2>
-      </div>
-      <div>
-        <p>Wednesday night starts easy, with drinks at the <strong>Dillon Dam Brewery</strong> ten minutes down the road. Come straight from the airport if that's how the day works out.</p>
-        <p>The wedding itself is at <strong>Ski Tip Lodge</strong> in Keystone on Thursday, from five until ten. It started life as an 1880s stagecoach stop, became Colorado's first ski lodge in 1947, and still has the original stone fireplace and the Snake River running behind the garden. Ceremony, dinner and dancing all happen there, and we come back on Friday for brunch.</p>
-        <p>At ten the lodge says goodnight, and anyone still standing comes with us over Swan Mountain Road to <strong><button class="lock lock--inline" type="button" data-unlock data-locked="house-line">our rental house in Breckenridge</button></strong>, about twenty-five minutes away, to finish the night properly.</p>
-        <svg class="ridge" viewBox="0 0 900 26" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 20 L240 20"/>
-          <path class="peak" d="M240 20 L320 6 L390 20 L470 8 L540 20 L620 5 L680 20"/>
-          <path d="M680 20 L900 20"/>
-        </svg>
-        <div class="cards">
-          <div class="card">
-            <span class="card__num">Wednesday, 6:00 pm</span>
-            <h3>Dillon Dam Brewery</h3>
-            <p>100 Little Dam Street, Dillon. Ten minutes from Keystone, no dress code, no schedule.</p>
-          </div>
-          <div class="card">
-            <span class="card__num">Thursday, 5:00 – 10:00 pm</span>
-            <h3>Ski Tip Lodge</h3>
-            <p>0764 Montezuma Road, Keystone, CO 80435. Free parking on site, and the resort shuttle stops at the door.</p>
-          </div>
-          <div class="card" data-locked="house">
-            <button class="lock" type="button" data-unlock>
-              <span class="lock__eyebrow">Guests only</span>
-              <p class="lock__title">The house in Breckenridge</p>
-              <p class="lock__hint">Tap to unlock. One question, and you'll know the answer.</p>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="schedule">
-    <div class="wrap reveal">
-      <span class="eyebrow">Three days</span>
-      <h2 class="h2">Schedule</h2>
-
-      <p class="sched__day">Wednesday, July 7</p>
-      <div class="sched">
-        <div class="sched__row">
-          <div class="sched__time">6:00 pm</div>
-          <div class="sched__what">Welcome drinks</div>
-          <div class="sched__note">Dillon Dam Brewery, 100 Little Dam Street, Dillon. Drop in whenever you land.</div>
-        </div>
-      </div>
-
-      <p class="sched__day">Thursday, July 8</p>
-      <div class="sched">
-        <div class="sched__row">
-          <div class="sched__time">5:00 pm</div>
-          <div class="sched__what">Ceremony</div>
-          <div class="sched__note">In the garden at Ski Tip Lodge. Please be seated by 4:50.</div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__time">5:30 pm</div>
-          <div class="sched__what">Cocktails</div>
-          <div class="sched__note">On the patio by the river, with blankets and a fire.</div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__time">6:30 pm</div>
-          <div class="sched__what">Dinner</div>
-          <div class="sched__note">Seated, by the stone fireplace.</div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__time">8:00 pm</div>
-          <div class="sched__what">Dancing</div>
-          <div class="sched__note">Until the lodge turns the lights on at ten.</div>
-        </div>
-        <div class="sched__row">
-          <div class="sched__time">10:30 pm</div>
-          <div class="sched__what">After party in Breckenridge</div>
-          <div class="sched__note">At our rental house, twenty-five minutes over Swan Mountain Road. Rides leave from the lodge at ten.</div>
-        </div>
-      </div>
-
-      <p class="sched__day">Friday, July 9</p>
-      <div class="sched">
-        <div class="sched__row">
-          <div class="sched__time">11:30 am</div>
-          <div class="sched__what">Brunch</div>
-          <div class="sched__note" data-locked="brunch">Back at Ski Tip Lodge. <button class="lock lock--inline" type="button" data-unlock>Unlock the address</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--tint" id="stay">
-    <div class="wrap reveal">
-      <span class="eyebrow">Getting here &amp; staying</span>
-      <h2 class="h2">Stay</h2>
-      <div class="cards">
-        <div class="card">
-          <span class="card__num">Fly</span>
-          <h3>Denver International</h3>
-          <p>About 100 miles west on I-70, roughly 1 hour 45 minutes in good weather. Epic Mountain Express runs shuttles door to door if you'd rather skip the rental.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">Sleep</span>
-          <h3>Keystone or Breckenridge</h3>
-          <p>Ski Tip Lodge itself has nine rooms — book early. Otherwise stay in Keystone village, or in Breckenridge if you'd rather be near the after party. We've held rooms under "Katie &amp; Hugo" through May 1.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">Altitude</span>
-          <h3>9,200 feet</h3>
-          <p>Keystone is high, and Breckenridge is higher. Drink far more water than feels necessary, go easy on the first night's drinks, and give yourself a day to adjust if you can.</p>
-          <p style="margin-top:.8rem">If altitude has troubled you before, see your doctor at least three weeks ahead about preventive medication. It is usually started two days before you arrive, so it needs planning.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">More</span>
-          <h3>Two longer lists</h3>
-          <p><a href="hotels.html" style="color:var(--gold-soft)">Every hotel with our discount</a>, and <a href="things-to-do.html" style="color:var(--gold-soft)">things to do around Keystone</a> — hikes, rafting, gold mines and the rest.</p>
-        </div>
-        <div class="card">
-          <span class="card__num">Weather</span>
-          <h3>July in the Rockies</h3>
-          <p>Low 70s and bright by day, mid 40s once the sun drops behind the ridge. Wildflowers everywhere. Afternoon thunderstorms blow through fast, so pack a layer and something for rain.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="dress">
-    <div class="wrap duo reveal">
-      <div class="duo__aside">
-        <span class="eyebrow">What to wear</span>
-        <h2 class="h2">Dress code</h2>
-      </div>
-      <div>
-        <p>Black tie optional, mountain edition. Long dresses, dark suits, tuxedos if you own one. Bring a wrap or an overcoat for the terrace — the temperature drops the moment the sun goes behind the ridge.</p>
-        <p>The ceremony is on grass, so block heels or flats will serve you far better than stilettos. If you're taking your cues from the palette, we're in olive, cream, and gold.</p>
-        <div class="swatches" aria-hidden="true">
-          <div class="sw" style="background:#36402C"></div>
-          <div class="sw" style="background:#4E5C3F"></div>
-          <div class="sw" style="background:#C9A662"></div>
-          <div class="sw" style="background:#E2CE9E"></div>
-          <div class="sw" style="background:#F1EDE1"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section" id="rsvp">
-    <div class="wrap wrap--narrow reveal">
-      <span class="eyebrow">By April 1, 2027</span>
-      <h2 class="h2">RSVP</h2>
-      <p>April Fools' Day, and also Saint Hugh's day. The deadline is not a joke: the lodge needs numbers. One response per guest, and if your invitation named a plus one, add them below.</p>
-
-      <!-- This posts nothing on its own. Point the action at Formspree / Google Forms,
-           or leave as-is to open the guest's mail app. -->
-      <div class="rsvp-form">
-        <div class="field">
-          <label for="r-name">Full name</label>
-          <input id="r-name" type="text" autocomplete="name" placeholder="As it appears on your invitation">
-        </div>
-        <div class="field">
-          <label for="r-email">Email</label>
-          <input id="r-email" type="email" autocomplete="email" placeholder="So we can send you the details">
-        </div>
-        <div class="field">
-          <label for="r-attend">Will you be there?</label>
-          <select id="r-attend">
-            <option>Joyfully accepts</option>
-            <option>Regretfully declines</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="r-drinks">Wednesday drinks at the Dam Brewery</label>
-          <select id="r-drinks">
-            <option>Yes, count me in</option>
-            <option>No, arriving later</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="r-brunch">Friday brunch at Ski Tip</label>
-          <select id="r-brunch">
-            <option>Yes, count me in</option>
-            <option>No, heading home</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="r-guests">Number in your party</label>
-          <input id="r-guests" type="number" min="1" max="4" value="1">
-        </div>
-        <div class="field">
-          <label for="r-notes">Anything we should know</label>
-          <input id="r-notes" type="text" placeholder="Dietary needs, arrival day, song requests">
-        </div>
-        <button class="btn" id="rsvpBtn" type="button">Send RSVP</button>
-        <p class="note" id="rsvpNote" hidden></p>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section section--tint" id="stories">
-    <div class="wrap">
-      <div class="reveal">
-        <span class="eyebrow">The wall</span>
-        <h2 class="h2">Tell us something true</h2>
-        <p>Your best story about the two of us. Funny, or sad, or neither — the only rule is that it actually happened. We'll read some of them out on the night. Not all of them. We know our families.</p>
-      </div>
-
-      <div class="rsvp-form reveal">
-        <div class="field">
-          <label for="s-name">Your name</label>
-          <input id="s-name" type="text" maxlength="60" placeholder="So we know who to blame">
-        </div>
-        <div class="field">
-          <label for="s-text">The story</label>
-          <textarea id="s-text" maxlength="700" placeholder="The time we..."></textarea>
-        </div>
-        <button class="btn" id="storyBtn" type="button">Add it to the wall</button>
-        <p class="note" id="storyNote" hidden></p>
-      </div>
-
-      <div class="stories reveal" id="storyWall"></div>
-    </div>
-  </section>
-
-</main>
 
 <footer class="foot">
   <p class="foot__mark">Katie &amp; Hugo</p>
@@ -916,6 +725,9 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 </footer>
 
 <script>
+/* ============================================================
+   PUBLIC: the envelope, the nav, and the wall
+   ============================================================ */
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -930,20 +742,19 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   var names    = document.getElementById('heroNames');
   var cue      = document.getElementById('cue');
   var nav      = document.getElementById('nav');
+  var cardSec  = document.getElementById('card');
 
   function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
-  function seg(p,a,b){ return clamp((p-a)/(b-a),0,1); }          // 0→1 across a range
+  function seg(p,a,b){ return clamp((p-a)/(b-a),0,1); }
   function ease(t){ return t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; }
 
   function paint(){
     if(reduce){ finish(); return; }
-
     var rect = overture.getBoundingClientRect();
     var span = overture.offsetHeight - window.innerHeight;
     var p = clamp(-rect.top / span, 0, 1);
 
-    // 1. the flap swings open
-    var open = ease(seg(p, .04, .34));
+    var open = ease(seg(p, .02, .20));
     flap.style.transform = 'rotateX(' + (-176 * open) + 'deg)';
     flap.style.zIndex = open > .5 ? 0 : 6;
     seal.style.opacity = String(clamp(1 - open*2.4, 0, 1));
@@ -951,25 +762,21 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     card.style.transform = 'translateY(' + (6 - 5*open) + '%)';
     card.style.opacity = String(clamp(open*1.6, 0, 1));
 
-    // 2. the whole envelope slides down and out
-    var drop = ease(seg(p, .30, .70));
+    var drop = ease(seg(p, .18, .42));
     envLayer.style.transform = 'translate3d(0,' + (drop*118) + 'vh,0) scale(' + (1 - .06*drop) + ')';
-    envLayer.style.opacity = String(clamp(1 - seg(p,.60,.74), 0, 1));
+    envLayer.style.opacity = String(clamp(1 - seg(p, .36, .46), 0, 1));
 
-    // 3. the photo comes up behind it
-    var pic = ease(seg(p, .26, .62));
+    var pic = ease(seg(p, .16, .40));
     photo.style.opacity = String(pic);
     photo.style.transform = 'scale(' + (1.1 - .1*pic) + ')';
-    veil.style.opacity = String(ease(seg(p,.34,.68)) * .95);
+    veil.style.opacity = String(ease(seg(p, .22, .44)) * .95);
 
-    // 4. the names settle in gold
-    var nm = ease(seg(p, .50, .84));
+    var nm = ease(seg(p, .32, .58));
     plate.style.opacity = String(nm);
     names.style.transform = 'translateY(' + (26 - 26*nm) + 'px)';
     names.style.letterSpacing = (0.42 - 0.32*nm).toFixed(3) + 'em';
 
     cue.style.opacity = String(clamp(1 - p*5, 0, 1));
-    nav.classList.toggle('is-on', p > .92);
   }
 
   function finish(){
@@ -980,101 +787,73 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     veil.style.opacity = '.95';
     plate.style.opacity = '1';
     names.style.letterSpacing = '.1em';
-    nav.classList.add('is-on');
   }
 
-  /* nav folds away on the way down, returns on the way up */
-  var links  = document.getElementById('navLinks');
+  /* nav only after the save-the-date, then folds on the way down */
+  var links = document.getElementById('navLinks');
   var toggle = document.getElementById('navToggle');
-  var lastY = window.scrollY || 0, navHidden = false;
-  function shutMenu(){ links.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }
+  var lastY = window.scrollY || 0, hidden = false;
+  function shut(){ links.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }
   function navScroll(){
     var y = window.scrollY || 0;
-    if(!nav.classList.contains('is-on')){ lastY = y; return; }
-    if(y > lastY + 8 && y > 320){
-      if(!navHidden){ nav.classList.add('is-hidden'); shutMenu(); navHidden = true; }
-    } else if(y < lastY - 8){
-      if(navHidden){ nav.classList.remove('is-hidden'); navHidden = false; }
-    }
+    var past = cardSec.getBoundingClientRect().bottom < 80;
+    nav.classList.toggle('is-on', past);
+    if(!past){ lastY = y; return; }
+    if(y > lastY + 8){ if(!hidden){ nav.classList.add('is-hidden'); shut(); hidden = true; } }
+    else if(y < lastY - 8){ if(hidden){ nav.classList.remove('is-hidden'); hidden = false; } }
     lastY = y;
   }
   toggle.addEventListener('click', function(){
     var open = links.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') shutMenu(); });
+  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') shut(); });
 
   var queued = false;
-  function onScroll(){
-    if(queued) return;
-    queued = true;
+  window.addEventListener('scroll', function(){
+    if(queued) return; queued = true;
     requestAnimationFrame(function(){ paint(); navScroll(); queued = false; });
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  paint();
+  }, {passive:true});
+  window.addEventListener('resize', paint);
+  paint(); navScroll();
 
-  // section reveals
-  if(!reduce && 'IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, {threshold:.18});
-    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
-  }
-
+  window.KH = window.KH || {};
+  window.KH.observe = function(){
+    if(reduce || !('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, {threshold:.14});
+    document.querySelectorAll('.reveal:not(.is-in)').forEach(function(el){ io.observe(el); });
+  };
+  window.KH.observe();
 })();
 </script>
 
 <script>
 /* ============================================================
-   THE PICTURES, THE VOTE, AND THE STORY WALL
-
-   1. Drop your nine images in a /photos folder and fill in src +
-      story below. Anything left blank shows a numbered placeholder.
-   2. Votes and stories persist through the Claude artifact's shared
-      storage. If you host this file yourself, swap the two functions
-      in `store` for calls to your own backend (Firebase, Supabase,
-      a Google Sheet via Apps Script — anything that returns JSON).
+   THE WALL
+   private.enc holds the rest of the site AND the six photographs,
+   AES-GCM encrypted with the answer to the riddle. Nothing below
+   the card exists in this file, and the pictures are not sitting
+   in a public folder waiting to be found.
    ============================================================ */
-var PHOTOS = [
-  { src:'photos/01-central-park.jpg',
-    story:'Central Park. Two people conducting extensive due diligence.' },
-
-  { src:'photos/02-waterfall.jpg',
-    story:'Colorado. We hiked to a waterfall to prove we were the sort of people who hike to waterfalls.' },
-
-  { src:'photos/03-loire.jpg',
-    story:'The Loire, where we stopped pretending this was casual.' },
-
-  { src:'photos/04-dingle.jpg',
-    story:'Dingle. He asked. She said yes, then \u201cwait, are you serious?\u201d' },
-
-  { src:'photos/05-meadow.jpg',
-    story:'Nine thousand feet, no witnesses, both of us silently over-promising.' },
-  { src:'photos/06-switzerland.jpg',
-    story:'Switzerland. Two people ignoring a perfectly good mountain.' }
-];
-
 (function(){
-  var VOTES_KEY = 'kh-photo-votes';   // shared across everyone
-  var MINE_KEY  = 'kh-my-vote';       // just yours
-  var STORY_KEY = 'kh-stories';       // shared across everyone
-
-
-  /* ---- guests-only blocks ----------------------------------------------
-     The private text is AES-GCM ciphertext, not hidden markup. The riddle
-     answer is the decryption key, so viewing the page source shows nothing.
-     Re-run build-private.py after changing any private content. */
-  var LOCKED = {"house":{"s":"3rb+9Bu53naDqCrW7Vhf0w==","n":"nCVcmXAt2bVs2JLy","c":"NFYk9lWGo71x2xvkMn1yLhyG2pNufYay6HaHgvSDiMRHHSgrfF0WgLzeet5+LfEHDpUKUp5HbAsTMWMPuhBeR23mOdV+3pmdv3fLvMbrInFs7QZLlGhs5SCcDWohS114x+r4AkNmsCJJPWBr3v3P9xrR/T8/yMpfmf/ji5l0+grZYrwaS0IGELSfZM+RRHVapEsOhv2HaL676iZC0clN0PMYsIGGQPIZ9d7RRMDdKdZi7XweuuX82d6YsmJ0uOuakqOytzXqWFAxvUkABxLiUUlgIuzSLiwMjsGd3ipSNo9XNt8hd5v4mno7mcoEBCxlw9HJDPmiP6sz9NTWZZj/lPJGbuGhc2DJEsTZCnORaKiL3fazXA=="},"house-line":{"s":"MdqaJNdXDrpmUcE/SebTbg==","n":"vwrwZwPZ8lvyCO0m","c":"ToxMm63EoinLkIrKq+/bolZlnOMw11+YvDLv5NFjHc2t7mlvskTPGkrtr4YI5VVIvw0+rUhCoSxVjxEJe+rhT025FdTown8hxYo="},"brunch":{"s":"sRb37SenCZRhXPL9EVw4bg==","n":"iFRC60+gaWvoEkMo","c":"7JLdm9NlEHy6pGkFpVvh1zV3NQaukQddEJyaf+0QqLD0kPRfCXJDGloY9A6ZMDV4+q0Rw93GFcAHMque7/SqGsdRd6kQuXSYk3iqlvUtm9/ROfHb8nb3ucbKMfQqJ+oSI19ppF9u+B9KHSqYgDXIlYYenvAjTwcL7wiKjzKsLw3JmrpQlA=="}};
-
-  var gate     = document.getElementById('gate');
-  var gateIn   = document.getElementById('gateAnswer');
-  var gateNote = document.getElementById('gateNote');
-  var unlocked = null;   // the answer, once it has worked
+  var wall     = document.getElementById('wall');
+  var input    = document.getElementById('wallAnswer');
+  var note     = document.getElementById('wallNote');
+  var box      = document.getElementById('private');
+  var bundle   = null;
 
   function b64(x){ return Uint8Array.from(atob(x), function(c){ return c.charCodeAt(0); }); }
+
+  function getBundle(){
+    if(bundle) return Promise.resolve(bundle);
+    return fetch('private.enc').then(function(r){ return r.json(); })
+      .then(function(j){ bundle = j; return j; });
+  }
 
   function decrypt(rec, answer){
     var enc = new TextEncoder();
@@ -1084,91 +863,75 @@ var PHOTOS = [
           { name:'PBKDF2', salt:b64(rec.s), iterations:150000, hash:'SHA-256' },
           base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
       })
-      .then(function(key){
-        return crypto.subtle.decrypt({ name:'AES-GCM', iv:b64(rec.n) }, key, b64(rec.c));
-      })
+      .then(function(key){ return crypto.subtle.decrypt({ name:'AES-GCM', iv:b64(rec.n) }, key, b64(rec.c)); })
       .then(function(buf){ return new TextDecoder().decode(buf); });
   }
 
-  function revealAll(answer){
-    unlocked = answer;
-    try{ localStorage.setItem('kh-key', answer); }catch(e){}
-    Object.keys(LOCKED).forEach(function(name){
-      var host = document.querySelector('[data-locked="' + name + '"]');
-      if(!host) return;
-      decrypt(LOCKED[name], answer).then(function(html){
-        if(host.classList.contains('lock--inline')){
-          var span = document.createElement('span');
-          span.innerHTML = html;
-          host.replaceWith(span);
-        } else {
-          host.innerHTML = html;
-        }
-      }).catch(function(){});
+  function unlock(answer, quiet){
+    return getBundle().then(function(j){
+      return decrypt(j.payload, answer);
+    }).then(function(text){
+      var data = JSON.parse(text);
+      box.innerHTML = data.html;
+      box.classList.add('is-open');
+      wall.style.display = 'none';
+      try{ localStorage.setItem('kh-key', answer); }catch(e){}
+      window.KH.start(data.photos);
+      window.KH.observe();
+    }).catch(function(err){
+      if(quiet) return;
+      note.classList.add('is-bad');
+      note.textContent = 'Not quite. Ask whoever sent you the invitation.';
+      throw err;
     });
   }
 
-  function openGate(){
-    if(unlocked){ revealAll(unlocked); return; }
-    gate.classList.add('is-open');
-    gateNote.classList.remove('is-bad');
-    gateNote.textContent = "It's on your invitation.";
-    gateIn.value = '';
-    setTimeout(function(){ gateIn.focus(); }, 60);
-  }
-  function closeGate(){ gate.classList.remove('is-open'); }
-
-  function tryAnswer(){
-    var a = gateIn.value.trim().toLowerCase();
+  function attempt(){
+    var a = input.value.trim().toLowerCase();
     if(!a) return;
-    var first = LOCKED[Object.keys(LOCKED)[0]];
-    if(!first){ closeGate(); return; }
-    gateNote.classList.remove('is-bad');
-    gateNote.textContent = 'Checking…';
-    decrypt(first, a)
-      .then(function(){ closeGate(); revealAll(a); })
-      .catch(function(){
-        gateNote.classList.add('is-bad');
-        gateNote.textContent = 'Not quite. Ask whoever sent you the invitation.';
-      });
+    note.classList.remove('is-bad');
+    note.textContent = 'Checking…';
+    unlock(a, false).catch(function(){});
   }
 
-  document.addEventListener('click', function(e){
-    var b = e.target.closest('[data-unlock]');
-    if(b){ e.preventDefault(); openGate(); }
-  });
-  document.getElementById('gateGo').addEventListener('click', tryAnswer);
-  document.getElementById('gateX').addEventListener('click', closeGate);
-  gateIn.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryAnswer(); });
-  gate.addEventListener('click', function(e){ if(e.target === gate) closeGate(); });
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && gate.classList.contains('is-open')) closeGate();
-  });
+  document.getElementById('wallGo').addEventListener('click', attempt);
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter') attempt(); });
 
-  /* already unlocked on this device? */
-  (function(){
-    var saved = null;
-    try{ saved = localStorage.getItem('kh-key'); }catch(e){}
-    if(!saved) return;
-    var first = LOCKED[Object.keys(LOCKED)[0]];
-    if(!first) return;
-    decrypt(first, saved).then(function(){ revealAll(saved); }).catch(function(){});
-  })();
+  var saved = null;
+  try{ saved = localStorage.getItem('kh-key'); }catch(e){}
+  if(saved) unlock(saved, true).catch(function(){});
+})();
+</script>
 
-  /* ---- backend ----
-     Paste the Apps Script /exec URL below and use the same SHARED_KEY as Code.gs.
-     Leave ENDPOINT empty and the page still works: votes and stories stay in the
-     browser for the session, and the RSVP falls back to opening the mail app. */
+<script>
+/* ============================================================
+   BEHIND THE WALL: photos, voting, adventures, stories, RSVP.
+   Runs only once the content has been decrypted and injected.
+   ============================================================ */
+(function(){
+  /* Paste the Apps Script /exec URL here, and use the same SHARED_KEY as Code.gs. */
   var ENDPOINT   = '';
   var SHARED_KEY = 'change-this-string';
   var FALLBACK_EMAIL = 'hello@katieandhugo.com';
+
+  var STORIES = [
+    'Central Park. Two people conducting extensive due diligence.',
+    'Colorado. We hiked to a waterfall to prove we were the sort of people who hike to waterfalls.',
+    'The Loire, where we stopped pretending this was casual.',
+    'Dingle. He asked. She said yes, then \u201cwait, are you serious?\u201d',
+    'Nine thousand feet, no witnesses, both of us silently over-promising.',
+    'Switzerland. Two people ignoring a perfectly good mountain.'
+  ];
+
+  var PHOTOS = [], votes = {}, myVote = null, stories = [], adventures = [], current = 0;
+  var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
 
   function post(action, data){
     if(!ENDPOINT) return Promise.resolve({ ok:false, offline:true });
     data.action = action; data.key = SHARED_KEY;
     return fetch(ENDPOINT, {
       method:'POST',
-      headers:{ 'Content-Type':'text/plain;charset=utf-8' },  // keeps it a simple request, no CORS preflight
+      headers:{ 'Content-Type':'text/plain;charset=utf-8' },
       body: JSON.stringify(data)
     }).then(function(r){ return r.json(); }).catch(function(){ return { ok:false, offline:true }; });
   }
@@ -1187,73 +950,49 @@ var PHOTOS = [
     if(!v){ v = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); local('kh-voter', v); }
     return v;
   }
-
-  var votes = {};
-  var myVote = (function(){ var v = local('kh-my-vote'); return v === null || v === '' ? null : parseInt(v, 10); })();
-  var stories = [];
-
-  var mosaic    = document.getElementById('mosaic');
-  var standings = document.getElementById('standings');
-  var standRows = document.getElementById('standRows');
-  var lb        = document.getElementById('lb');
-  var lbMedia   = document.getElementById('lbMedia');
-  var lbStory   = document.getElementById('lbStory');
-  var lbVote    = document.getElementById('lbVote');
-  var lbTally   = document.getElementById('lbTally');
-  var current   = 0;
-
   function esc(t){
     return String(t).replace(/[&<>"']/g, function(c){
       return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
     });
   }
   function pad(n){ return (n < 10 ? '0' : '') + n; }
-
-  /* ---- mosaic ---- */
-  function drawMosaic(){
-    mosaic.innerHTML = PHOTOS.map(function(ph, i){
-      var inner = ph.src
-        ? '<img src="' + esc(ph.src) + '" alt="Katie and Hugo, picture ' + (i+1) + '">'
-        : '<span class="tile__ph">Photo ' + (i+1) + '<br>square &middot; 1200 &times; 1200</span>';
-      var badge = (myVote === i) ? '<span class="tile__badge">Your pick</span>' : '';
-      return '<button class="tile" type="button" data-i="' + i + '" aria-label="Open picture ' + (i+1) + '">'
-           + inner + '<span class="tile__n">' + pad(i+1) + '</span>' + badge + '</button>';
-    }).join('');
+  function normalise(o){
+    var out = {};
+    Object.keys(o || {}).forEach(function(k){ out[parseInt(k, 10)] = o[k]; });
+    return out;
   }
 
-  /* ---- standings ---- */
+  function drawMosaic(){
+    mosaic.innerHTML = PHOTOS.map(function(src, i){
+      var badge = (myVote === i) ? '<span class="tile__badge">Your pick</span>' : '';
+      return '<button class="tile" type="button" data-i="' + i + '" aria-label="Open picture ' + (i+1) + '">'
+           + '<img src="' + src + '" alt="Katie and Hugo, picture ' + (i+1) + '">'
+           + '<span class="tile__n">' + pad(i+1) + '</span>' + badge + '</button>';
+    }).join('');
+  }
   function drawStandings(){
     if(myVote === null){ standings.hidden = true; return; }
     standings.hidden = false;
-    var rows = PHOTOS.map(function(ph, i){ return { i:i, n: votes[i] || 0 }; })
+    var rows = PHOTOS.map(function(p, i){ return { i:i, n: votes[i] || 0 }; })
                      .sort(function(a,b){ return b.n - a.n || a.i - b.i; });
     var top = Math.max(1, rows[0].n);
     standRows.innerHTML = rows.map(function(r, rank){
       return '<div class="stand__row' + (r.i === myVote ? ' is-mine' : '') + '">'
         + '<span class="stand__rank">' + pad(rank+1) + '</span>'
         + '<span class="stand__bar"><i style="width:' + Math.round(r.n / top * 100) + '%"></i></span>'
-        + '<span class="stand__n">' + r.n + (r.i === myVote ? ' &middot; you' : '') + '</span>'
-        + '</div>';
+        + '<span class="stand__n">' + r.n + (r.i === myVote ? ' &middot; you' : '') + '</span></div>';
     }).join('');
   }
-
-  /* ---- lightbox ---- */
   function openLb(i){
     current = i;
-    var ph = PHOTOS[i];
-    lbMedia.innerHTML = ph.src
-      ? '<img src="' + esc(ph.src) + '" alt="Katie and Hugo, picture ' + (i+1) + '">'
-      : '<div class="lb__ph">Photo ' + (i+1) + ' goes here</div>';
-    lbStory.textContent = ph.story || '';
+    lbMedia.innerHTML = '<img src="' + PHOTOS[i] + '" alt="Katie and Hugo, picture ' + (i+1) + '">';
+    lbStory.textContent = STORIES[i] || '';
     paintVote();
     lb.classList.add('is-open');
     document.body.style.overflow = 'hidden';
     lbVote.focus();
   }
-  function closeLb(){
-    lb.classList.remove('is-open');
-    document.body.style.overflow = '';
-  }
+  function closeLb(){ lb.classList.remove('is-open'); document.body.style.overflow = ''; }
   function paintVote(){
     var mine = (myVote === current);
     lbVote.textContent = mine ? 'This is your pick' : 'Vote for this one';
@@ -1273,102 +1012,121 @@ var PHOTOS = [
       if(r && r.votes){ votes = normalise(r.votes); paintVote(); drawStandings(); }
     });
   }
-  function normalise(o){
-    var out = {};
-    Object.keys(o || {}).forEach(function(k){ out[parseInt(k, 10)] = o[k]; });
-    return out;
-  }
 
-  mosaic.addEventListener('click', function(e){
-    var t = e.target.closest('.tile');
-    if(t) openLb(parseInt(t.dataset.i, 10));
-  });
-  lbVote.addEventListener('click', castVote);
-  document.getElementById('lbClose').addEventListener('click', closeLb);
-  document.getElementById('lbPrev').addEventListener('click', function(){ openLb((current + PHOTOS.length - 1) % PHOTOS.length); });
-  document.getElementById('lbNext').addEventListener('click', function(){ openLb((current + 1) % PHOTOS.length); });
-  lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
-  document.addEventListener('keydown', function(e){
-    if(!lb.classList.contains('is-open')) return;
-    if(e.key === 'Escape') closeLb();
-    if(e.key === 'ArrowLeft') openLb((current + PHOTOS.length - 1) % PHOTOS.length);
-    if(e.key === 'ArrowRight') openLb((current + 1) % PHOTOS.length);
-  });
-
-  /* ---- story wall ---- */
-  var wall = document.getElementById('storyWall');
   function drawWall(){
-    if(!stories.length){
-      wall.innerHTML = '<p class="story__empty">No stories yet. Someone has to go first.</p>';
-      return;
-    }
-    wall.innerHTML = stories.slice().reverse().map(function(st){
+    var el = document.getElementById('storyWall');
+    if(!el) return;
+    if(!stories.length){ el.innerHTML = '<p class="story__empty">No stories yet. Someone has to go first.</p>'; return; }
+    el.innerHTML = stories.slice().reverse().map(function(st){
       return '<article class="story"><p>&ldquo;' + esc(st.text) + '&rdquo;</p>'
            + '<footer>' + esc(st.name || 'Anonymous') + '</footer></article>';
     }).join('');
   }
-  document.getElementById('storyBtn').addEventListener('click', function(){
-    var name = document.getElementById('s-name').value.trim();
-    var text = document.getElementById('s-text').value.trim();
-    var note = document.getElementById('storyNote');
-    note.hidden = false;
-    if(text.length < 10){ note.textContent = 'A few more words than that.'; return; }
+  function drawBasket(){
+    var b = document.getElementById('advBasket');
+    if(!b) return;
+    b.innerHTML = adventures.length
+      ? 'Saved with your RSVP: <b>' + adventures.map(esc).join('</b>, <b>') + '</b>'
+      : 'Nothing selected yet';
+  }
 
-    stories.push({ name: name, text: text });
-    document.getElementById('s-text').value = '';
-    note.textContent = 'Added. Everyone visiting this page can read it, so keep it kind.';
-    drawWall();
-    post('story', { name: name, text: text }).then(function(r){
-      if(r && r.stories){ stories = r.stories; drawWall(); }
+  window.KH = window.KH || {};
+  window.KH.start = function(photos){
+    PHOTOS = photos || [];
+    mosaic    = document.getElementById('mosaic');
+    standings = document.getElementById('standings');
+    standRows = document.getElementById('standRows');
+    lb        = document.getElementById('lb');
+    lbMedia   = document.getElementById('lbMedia');
+    lbStory   = document.getElementById('lbStory');
+    lbVote    = document.getElementById('lbVote');
+    lbTally   = document.getElementById('lbTally');
+
+    var saved = local('kh-my-vote');
+    myVote = (saved === null || saved === '') ? null : parseInt(saved, 10);
+
+    drawMosaic(); drawStandings(); drawWall(); drawBasket();
+
+    mosaic.addEventListener('click', function(e){
+      var t = e.target.closest('.tile');
+      if(t) openLb(parseInt(t.dataset.i, 10));
     });
-  });
-
-  /* ---- rsvp ---- */
-  var rsvpBtn = document.getElementById('rsvpBtn');
-  if(rsvpBtn) rsvpBtn.addEventListener('click', function(){
-    var note = document.getElementById('rsvpNote');
-    var val  = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-    var name = val('r-name');
-    note.hidden = false;
-    if(!name){ note.textContent = 'Add your name first, then send.'; return; }
-
-    var data = {
-      name:   name,
-      email:  val('r-email'),
-      response: val('r-attend'),
-      drinks: val('r-drinks'),
-      brunch: val('r-brunch'),
-      party:  val('r-guests'),
-      notes:  val('r-notes')
-    };
-
-    rsvpBtn.disabled = true;
-    note.textContent = 'Sending…';
-    post('rsvp', data).then(function(r){
-      rsvpBtn.disabled = false;
-      if(r && r.ok){
-        note.textContent = data.email
-          ? 'Thank you. A confirmation is on its way to ' + data.email + '.'
-          : 'Thank you, we have you down.';
-        rsvpBtn.textContent = 'Sent';
-        return;
-      }
-      // no backend yet, or it failed: fall back to the mail app
-      var body = Object.keys(data).map(function(k){ return k + ': ' + data[k]; }).join('\n');
-      window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject='
-        + encodeURIComponent('RSVP — ' + name) + '&body=' + encodeURIComponent(body);
-      note.textContent = 'Opening your mail app. If nothing happens, send these details to ' + FALLBACK_EMAIL + '.';
+    lbVote.addEventListener('click', castVote);
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', function(){ openLb((current + PHOTOS.length - 1) % PHOTOS.length); });
+    document.getElementById('lbNext').addEventListener('click', function(){ openLb((current + 1) % PHOTOS.length); });
+    lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+    document.addEventListener('keydown', function(e){
+      if(!lb.classList.contains('is-open')) return;
+      if(e.key === 'Escape') closeLb();
+      if(e.key === 'ArrowLeft') openLb((current + PHOTOS.length - 1) % PHOTOS.length);
+      if(e.key === 'ArrowRight') openLb((current + 1) % PHOTOS.length);
     });
-  });
 
-  /* ---- boot ---- */
-  drawMosaic(); drawWall(); drawStandings();
-  load().then(function(r){
-    if(!r) return;
-    votes   = normalise(r.votes);
-    stories = Array.isArray(r.stories) ? r.stories : [];
-    drawMosaic(); drawStandings(); drawWall();
-  });
+    var advList = document.getElementById('advList');
+    if(advList) advList.addEventListener('click', function(e){
+      var c = e.target.closest('.adv__card');
+      if(!c) return;
+      var name = c.dataset.adv;
+      var on = c.classList.toggle('is-on');
+      adventures = adventures.filter(function(x){ return x !== name; });
+      if(on) adventures.push(name);
+      drawBasket();
+    });
+
+    var storyBtn = document.getElementById('storyBtn');
+    if(storyBtn) storyBtn.addEventListener('click', function(){
+      var name = document.getElementById('s-name').value.trim();
+      var text = document.getElementById('s-text').value.trim();
+      var n = document.getElementById('storyNote');
+      n.hidden = false;
+      if(text.length < 10){ n.textContent = 'A few more words than that.'; return; }
+      stories.push({ name:name, text:text });
+      document.getElementById('s-text').value = '';
+      n.textContent = 'Added. Every guest who unlocks the site can read it, so keep it kind.';
+      drawWall();
+      post('story', { name:name, text:text }).then(function(r){
+        if(r && r.stories){ stories = r.stories; drawWall(); }
+      });
+    });
+
+    var rsvpBtn = document.getElementById('rsvpBtn');
+    if(rsvpBtn) rsvpBtn.addEventListener('click', function(){
+      var n = document.getElementById('rsvpNote');
+      var val = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      var name = val('r-name');
+      n.hidden = false;
+      if(!name){ n.textContent = 'Add your name first, then send.'; return; }
+      var data = {
+        name: name, email: val('r-email'), party: val('r-guests'),
+        menu: val('r-menu'), drinks: val('r-drinks'), brunch: val('r-brunch'),
+        adventures: adventures.join(', ') || 'none', notes: val('r-notes')
+      };
+      rsvpBtn.disabled = true;
+      n.textContent = 'Sending…';
+      post('rsvp', data).then(function(r){
+        rsvpBtn.disabled = false;
+        if(r && r.ok){
+          n.textContent = data.email
+            ? 'Thank you. A confirmation is on its way to ' + data.email + '.'
+            : 'Thank you, we have you down.';
+          rsvpBtn.textContent = 'Sent';
+          return;
+        }
+        var body = Object.keys(data).map(function(k){ return k + ': ' + data[k]; }).join('\n');
+        window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject='
+          + encodeURIComponent('RSVP — ' + name) + '&body=' + encodeURIComponent(body);
+        n.textContent = 'Opening your mail app. If nothing happens, send these details to ' + FALLBACK_EMAIL + '.';
+      });
+    });
+
+    load().then(function(r){
+      if(!r) return;
+      votes   = normalise(r.votes);
+      stories = Array.isArray(r.stories) ? r.stories : [];
+      drawMosaic(); drawStandings(); drawWall();
+    });
+  };
 })();
 </script>
 </body>
