@@ -6,7 +6,7 @@
 <title>Hotels — Katie &amp; Hugo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    TOKENS
@@ -23,7 +23,7 @@
   --cream:#F1EDE1;
   --cream-dim:rgba(241,237,225,.62);
 
-  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --display:"Marcellus", "Optima", Georgia, serif;
   --body:"Cormorant Garamond", Georgia, serif;
   --util:"Jost", "Helvetica Neue", Arial, sans-serif;
 
@@ -57,7 +57,7 @@ a{color:inherit}
 }
 .h2{
   font-family:var(--display);
-  font-weight:500;
+  font-weight:400;
   font-size:clamp(2rem,4.4vw,3.1rem);
   letter-spacing:.09em;
   text-transform:uppercase;
@@ -90,7 +90,7 @@ a{color:inherit}
 }
 .nav.is-on{opacity:1;transform:none;pointer-events:auto}
 .nav__mark{
-  font-family:var(--display);font-weight:500;font-size:.92rem;letter-spacing:.24em;
+  font-family:var(--display);font-weight:400;font-size:.92rem;letter-spacing:.24em;
   text-transform:uppercase;color:var(--gold-soft);text-decoration:none;white-space:nowrap;
 }
 .nav__links{display:flex;flex-wrap:wrap;gap:clamp(.7rem,2vw,1.7rem);align-items:center}
@@ -157,7 +157,7 @@ a{color:inherit}
 .hero__plate{position:relative;text-align:center;padding:0 1.2rem;opacity:0}
 .hero__names{
   font-family:var(--display);
-  font-weight:600;
+  font-weight:400;
   font-size:clamp(3rem,13.5vw,9.5rem);
   line-height:.94;
   color:var(--gold);
@@ -167,7 +167,7 @@ a{color:inherit}
   text-shadow:0 2px 40px rgba(30,36,26,.75);
 }
 .hero__amp{
-  display:block;font-family:var(--display);font-weight:500;font-style:italic;text-transform:none;
+  display:block;font-family:var(--display);font-weight:400;font-style:italic;text-transform:none;
   font-size:.36em;color:var(--gold-soft);letter-spacing:0;margin:.12em 0;opacity:.9;
 }
 .hero__meta{
@@ -178,7 +178,7 @@ a{color:inherit}
 /* pipe-rule date, echoing the card */
 .pipedate{display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,2vw,1.1rem);margin:1.6rem 0 0}
 .pipedate .w{font-family:var(--util);font-weight:400;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase}
-.pipedate .n{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,4.2vw,2.2rem);letter-spacing:.02em;line-height:1}
+.pipedate .n{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,4.2vw,2.2rem);letter-spacing:.02em;line-height:1}
 .pipedate i{display:block;width:1px;height:2.1em;background:currentColor;opacity:.4}
 .hero__meta{justify-content:center}
 .hero__place{font-family:var(--body);font-style:italic;font-size:1.05rem;letter-spacing:.1em;color:var(--cream-dim);margin:.9rem 0 0}
@@ -458,7 +458,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   font-family:var(--util);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
   color:var(--gold);display:block;margin-bottom:.6rem;
 }
-.lock__title{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:.12em;
+.lock__title{font-family:var(--display);font-weight:400;font-size:1.05rem;letter-spacing:.12em;
   text-transform:uppercase;color:var(--gold-soft);margin:0 0 .5rem}
 .lock__hint{color:var(--cream-dim);font-size:.95em;margin:0}
 .lock--inline{display:inline;padding:.1rem .5rem;border-radius:1px;white-space:nowrap}
@@ -466,7 +466,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 .gate{position:fixed;inset:0;z-index:300;display:none;background:rgba(24,29,20,.96);padding:1.4rem}
 .gate.is-open{display:grid;place-items:center}
 .gate__box{width:min(430px,100%);text-align:center}
-.gate__q{font-family:var(--display);font-weight:500;font-size:clamp(1.4rem,4.4vw,2rem);
+.gate__q{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,4.4vw,2rem);
   letter-spacing:.06em;color:var(--gold-soft);margin:.6rem 0 1.4rem;line-height:1.3}
 .gate input{
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(201,166,98,.45);
@@ -502,7 +502,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 
 /* footer */
 .foot{padding:4rem 1.5rem 3.5rem;text-align:center;background:var(--olive-900);border-top:1px solid rgba(201,166,98,.2)}
-.foot__mark{font-family:var(--display);font-weight:500;font-size:1.3rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.foot__mark{font-family:var(--display);font-weight:400;font-size:1.3rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .foot__meta{font-family:var(--util);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream-dim);margin-top:1rem}
 
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
@@ -526,7 +526,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   .back:hover{color:var(--gold-soft)}
   .group{margin-top:clamp(2.6rem,6vw,4rem)}
   .group > .eyebrow{display:block;margin-bottom:.4rem}
-  .group > h3{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,3.4vw,2.1rem);
+  .group > h3{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3.4vw,2.1rem);
               letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft);margin:0 0 1rem}
   .group > p{max-width:var(--measure)}
   .flag{border:1px solid rgba(201,166,98,.4);padding:1.4rem 1.5rem;margin-top:1.6rem;
@@ -539,13 +539,11 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 <header class="nav is-on" id="nav">
   <a class="nav__mark" href="index.html">Katie &amp; Hugo</a>
   <nav class="nav__links" id="navLinks">
-    <a href="index.html#schedule">Schedule</a>
-    <a href="index.html#stay">Stay</a>
     <a href="things-to-do.html">Things to do</a>
     <a href="hotels.html">Hotels</a>
   </nav>
   <div class="nav__end">
-    <a class="rsvp" href="index.html#rsvp">RSVP</a>
+    <a class="rsvp" href="index.html">The wedding</a>
     <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
   </div>
 </header>

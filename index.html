@@ -572,6 +572,15 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   font-family:var(--util);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);
 }
 .basket b{color:var(--gold-soft);font-weight:400}
+.adv__card.is-fixed{cursor:default;opacity:.85}
+.adv__card.is-fixed:hover{border-color:rgba(201,166,98,.26)}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;padding-top:.3rem}
+.chip{
+  font-family:var(--util);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid rgba(201,166,98,.4);color:var(--cream-dim);background:transparent;
+  padding:.6rem 1rem;border-radius:1px;cursor:pointer;transition:all .25s;
+}
+.chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
 </style>
 </head>
 <body>
@@ -586,6 +595,8 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     <a href="#adventures">Adventures</a>
     <a href="#menu">Menu</a>
     <a href="#stories">Stories</a>
+    <a href="things-to-do.html">Things to do</a>
+    <a href="hotels.html">Hotels</a>
   </nav>
   <div class="nav__end">
     <a class="rsvp" href="#rsvp">RSVP</a>
@@ -766,12 +777,12 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     envLayer.style.transform = 'translate3d(0,' + (drop*118) + 'vh,0) scale(' + (1 - .06*drop) + ')';
     envLayer.style.opacity = String(clamp(1 - seg(p, .36, .46), 0, 1));
 
-    var pic = ease(seg(p, .16, .40));
+    var pic = ease(seg(p, .14, .36));
     photo.style.opacity = String(pic);
     photo.style.transform = 'scale(' + (1.1 - .1*pic) + ')';
-    veil.style.opacity = String(ease(seg(p, .22, .44)) * .95);
+    veil.style.opacity = String(ease(seg(p, .26, .72)) * .95);   // slow: let the painting breathe
 
-    var nm = ease(seg(p, .32, .58));
+    var nm = ease(seg(p, .50, .80));
     plate.style.opacity = String(nm);
     names.style.transform = 'translateY(' + (26 - 26*nm) + 'px)';
     names.style.letterSpacing = (0.42 - 0.32*nm).toFixed(3) + 'em';
@@ -807,7 +818,15 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     var open = links.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  links.addEventListener('click', function(e){ if(e.target.tagName === 'A') shut(); });
+  links.addEventListener('click', function(e){
+    if(e.target.tagName !== 'A') return;
+    shut();
+    var href = e.target.getAttribute('href');
+    if(href && href.charAt(0) === '#' && !document.querySelector(href)){
+      e.preventDefault();                       // still locked: send them to the riddle
+      document.getElementById('wall').scrollIntoView({behavior:'smooth'});
+    }
+  });
 
   var queued = false;
   window.addEventListener('scroll', function(){
@@ -923,7 +942,8 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     'Switzerland. Two people ignoring a perfectly good mountain.'
   ];
 
-  var PHOTOS = [], votes = {}, myVote = null, stories = [], adventures = [], current = 0;
+  var PHOTOS = [], votes = {}, myVote = null, stories = [], adventures = [], menu = '', current = 0;
+  var ADVENTURES = ['Pioneer Sports bike ride', 'KODI rafting, Browns Canyon', 'Fairplay Rodeo'];
   var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
 
   function post(action, data){
@@ -1022,12 +1042,46 @@ main{position:relative;z-index:20;background:var(--olive-800)}
            + '<footer>' + esc(st.name || 'Anonymous') + '</footer></article>';
     }).join('');
   }
+  /* the section tiles and the RSVP form are two views of the same choice */
   function drawBasket(){
     var b = document.getElementById('advBasket');
-    if(!b) return;
-    b.innerHTML = adventures.length
+    if(b) b.innerHTML = adventures.length
       ? 'Saved with your RSVP: <b>' + adventures.map(esc).join('</b>, <b>') + '</b>'
       : 'Nothing selected yet';
+
+    var m = document.getElementById('menuBasket');
+    if(m) m.innerHTML = menu ? 'Your main course: <b>' + esc(menu) + '</b>' : 'Nothing chosen yet';
+
+    document.querySelectorAll('#advList .adv__card').forEach(function(c){
+      c.classList.toggle('is-on', adventures.indexOf(c.dataset.adv) > -1);
+    });
+    document.querySelectorAll('#menuList .adv__card').forEach(function(c){
+      c.classList.toggle('is-on', c.dataset.menu === menu);
+    });
+    document.querySelectorAll('#rsvpAdv .chip').forEach(function(c){
+      c.classList.toggle('is-on', adventures.indexOf(c.dataset.adv) > -1);
+    });
+    var sel = document.getElementById('r-menu');
+    if(sel && menu && sel.value !== menu) sel.value = menu;
+  }
+
+  function buildChips(){
+    var host = document.getElementById('rsvpAdv');
+    if(!host) return;
+    host.innerHTML = ADVENTURES.map(function(a){
+      return '<button class="chip" type="button" data-adv="' + esc(a) + '">' + esc(a) + '</button>';
+    }).join('');
+    host.addEventListener('click', function(e){
+      var c = e.target.closest('.chip');
+      if(!c) return;
+      toggleAdv(c.dataset.adv);
+    });
+  }
+
+  function toggleAdv(name){
+    var i = adventures.indexOf(name);
+    if(i > -1) adventures.splice(i, 1); else adventures.push(name);
+    drawBasket();
   }
 
   window.KH = window.KH || {};
@@ -1063,29 +1117,39 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       if(e.key === 'ArrowRight') openLb((current + 1) % PHOTOS.length);
     });
 
+    buildChips();
+
     var advList = document.getElementById('advList');
     if(advList) advList.addEventListener('click', function(e){
       var c = e.target.closest('.adv__card');
-      if(!c) return;
-      var name = c.dataset.adv;
-      var on = c.classList.toggle('is-on');
-      adventures = adventures.filter(function(x){ return x !== name; });
-      if(on) adventures.push(name);
+      if(c && c.dataset.adv) toggleAdv(c.dataset.adv);
+    });
+
+    var menuList = document.getElementById('menuList');
+    if(menuList) menuList.addEventListener('click', function(e){
+      var c = e.target.closest('.adv__card');
+      if(!c || !c.dataset.menu) return;
+      menu = (menu === c.dataset.menu) ? '' : c.dataset.menu;   // single choice, tap again to clear
       drawBasket();
     });
 
+    var menuSel = document.getElementById('r-menu');
+    if(menuSel) menuSel.addEventListener('change', function(){ menu = menuSel.value; drawBasket(); });
+
     var storyBtn = document.getElementById('storyBtn');
     if(storyBtn) storyBtn.addEventListener('click', function(){
-      var name = document.getElementById('s-name').value.trim();
+      var name = local('kh-name') || '';        // filled in once they RSVP
       var text = document.getElementById('s-text').value.trim();
       var n = document.getElementById('storyNote');
       n.hidden = false;
       if(text.length < 10){ n.textContent = 'A few more words than that.'; return; }
       stories.push({ name:name, text:text });
       document.getElementById('s-text').value = '';
-      n.textContent = 'Added. Every guest who unlocks the site can read it, so keep it kind.';
+      n.textContent = name
+        ? 'Added, and matched to your RSVP.'
+        : 'Added. It will be matched to you when you RSVP.';
       drawWall();
-      post('story', { name:name, text:text }).then(function(r){
+      post('story', { name:name, voter:voterId(), text:text }).then(function(r){
         if(r && r.stories){ stories = r.stories; drawWall(); }
       });
     });
@@ -1098,10 +1162,13 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       n.hidden = false;
       if(!name){ n.textContent = 'Add your name first, then send.'; return; }
       var data = {
-        name: name, email: val('r-email'), party: val('r-guests'),
+        name: name, email: val('r-email'),
+        adults: val('r-guests'), children: val('r-kids'),
         menu: val('r-menu'), drinks: val('r-drinks'), brunch: val('r-brunch'),
-        adventures: adventures.join(', ') || 'none', notes: val('r-notes')
+        adventures: adventures.join(', ') || 'none',
+        voter: voterId(), notes: val('r-notes')
       };
+      local('kh-name', name);   // so any story they wrote can be matched to them
       rsvpBtn.disabled = true;
       n.textContent = 'Sending…';
       post('rsvp', data).then(function(r){
