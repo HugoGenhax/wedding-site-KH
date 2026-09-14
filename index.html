@@ -192,7 +192,7 @@ a{color:inherit}
 }
 .envelope{
   position:relative;
-  width:min(560px,84vw);
+  width:min(760px,92vw);
   aspect-ratio:1.52/1;
   transform-style:preserve-3d;
   filter:drop-shadow(0 40px 60px rgba(0,0,0,.5));
@@ -236,8 +236,8 @@ a{color:inherit}
 .env-front::before{left:0;clip-path:polygon(0 0,0 100%,100% 50%)}
 .env-front::after{right:0;clip-path:polygon(100% 0,100% 100%,0 50%)}
 .env-front__mark{
-  position:absolute;left:0;right:0;bottom:9%;text-align:center;z-index:2;
-  font-family:var(--util);font-size:.58rem;letter-spacing:.34em;
+  position:absolute;left:0;right:0;bottom:8%;text-align:center;z-index:2;
+  font-family:var(--util);font-size:clamp(.66rem,1.5vw,.82rem);letter-spacing:.34em;
   text-transform:uppercase;color:rgba(226,206,158,.68);
 }
 .env-front .ridge{
@@ -281,7 +281,7 @@ a{color:inherit}
 .cue{
   position:absolute;left:50%;bottom:clamp(1.4rem,5vh,3rem);transform:translateX(-50%);
   z-index:9;text-align:center;font-family:var(--util);
-  font-size:.6rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold-soft);
+  font-size:clamp(.7rem,1.6vw,.86rem);letter-spacing:.36em;text-transform:uppercase;color:var(--gold-soft);
 }
 .cue i{display:block;width:1px;height:44px;margin:.8rem auto 0;background:linear-gradient(var(--gold),transparent);animation:drip 2.4s ease-in-out infinite}
 @keyframes drip{0%,100%{transform:scaleY(.4);opacity:.4;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
@@ -581,6 +581,68 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   padding:.6rem 1rem;border-radius:1px;cursor:pointer;transition:all .25s;
 }
 .chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
+.tick{font-size:.9em;line-height:1}
+.card--wide{grid-column:1/-1}
+.sched__intro{color:var(--cream-dim);max-width:var(--measure);margin:.2rem 0 0}
+
+/* clickable venue tiles */
+.squares{grid-template-columns:1fr}
+@media(min-width:760px){.squares{grid-template-columns:1fr 1fr}}
+.square__name{display:block;text-decoration:none;font-family:var(--display);
+  font-size:clamp(1.3rem,2.8vw,1.7rem);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold-soft);margin:1.2rem 0 .7rem;line-height:1.2;transition:color .25s}
+.square__name:hover{color:var(--gold)}
+.square__addr{display:block;text-decoration:none;color:var(--cream-dim);font-size:.97em;
+  border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.square__addr:hover{color:var(--cream);border-bottom-color:rgba(201,166,98,.5)}
+
+/* select / register controls inside cards */
+.pickfoot{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.minibtn{
+  font-family:var(--util);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid rgba(201,166,98,.5);background:transparent;color:var(--gold-soft);
+  padding:.6rem 1.1rem;border-radius:1px;cursor:pointer;text-decoration:none;display:inline-block;
+  transition:background .25s,color .25s,border-color .25s;
+}
+.minibtn:hover{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
+.minibtn.is-on{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
+.qty{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.qty label{font-family:var(--util);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0}
+.qty input{
+  width:3.4rem;background:transparent;border:0;border-bottom:1px solid rgba(201,166,98,.45);
+  color:var(--cream);font-family:var(--body);font-size:1.05rem;text-align:center;padding:.25rem 0;border-radius:0;
+}
+.qty input:focus{outline:none;border-bottom-color:var(--gold)}
+.adv__card.is-on{border-color:var(--gold);background:rgba(201,166,98,.12)}
+
+/* the join box on the brunch row */
+.joinbox{margin-top:.9rem;display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+
+/* rsvp recap lines */
+.recap{display:grid;gap:.55rem;padding-top:.4rem}
+.recap__row{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  border-bottom:1px solid rgba(201,166,98,.16);padding:.55rem 0}
+.recap__row span{font-family:var(--body);font-size:1rem;color:var(--cream-dim)}
+.recap__none{color:var(--cream-dim);font-style:italic;font-size:.95em}
+.recap .qty input{width:3rem}
+.stepper{display:flex;align-items:center;gap:.9rem;margin-top:1.2rem}
+.stepper button{
+  width:34px;height:34px;border:1px solid rgba(201,166,98,.5);background:transparent;
+  color:var(--gold-soft);font-family:var(--util);font-size:1rem;line-height:1;cursor:pointer;
+  border-radius:1px;transition:background .2s,color .2s;
+}
+.stepper button:hover{background:var(--gold);color:var(--olive-900)}
+.stepper__n{
+  font-family:var(--display);font-size:1.4rem;color:var(--cream);min-width:1.6ch;text-align:center;
+}
+.adv__card[data-dish].has-some{border-color:var(--gold);background:rgba(201,166,98,.12)}
+.meal-lines{display:grid;gap:.5rem;padding-top:.4rem}
+.meal-line{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  border-bottom:1px solid rgba(201,166,98,.16);padding:.5rem 0}
+.meal-line span{font-family:var(--body);font-size:1rem;color:var(--cream-dim)}
+.meal-line .stepper{margin:0}
+.meal-line .stepper button{width:28px;height:28px}
+.meal-line .stepper__n{font-size:1.15rem}
 </style>
 </head>
 <body>
@@ -785,7 +847,9 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     var nm = ease(seg(p, .50, .80));
     plate.style.opacity = String(nm);
     names.style.transform = 'translateY(' + (26 - 26*nm) + 'px)';
-    names.style.letterSpacing = (0.42 - 0.32*nm).toFixed(3) + 'em';
+    var ls = (0.42 - 0.32*nm);
+    names.style.letterSpacing = ls.toFixed(3) + 'em';
+    names.style.paddingLeft   = ls.toFixed(3) + 'em';   // balances the space after the last letter
 
     cue.style.opacity = String(clamp(1 - p*5, 0, 1));
   }
@@ -798,6 +862,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     veil.style.opacity = '.95';
     plate.style.opacity = '1';
     names.style.letterSpacing = '.1em';
+    names.style.paddingLeft = '.1em';
   }
 
   /* nav only after the save-the-date, then folds on the way down */
@@ -805,8 +870,16 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   var toggle = document.getElementById('navToggle');
   var lastY = window.scrollY || 0, hidden = false;
   function shut(){ links.classList.remove('is-open'); toggle.setAttribute('aria-expanded','false'); }
+  /* Once the guest is in, the bar stays put. Before that it appears
+     after the card, and folds away on the way down. */
   function navScroll(){
     var y = window.scrollY || 0;
+    if(document.getElementById('private').classList.contains('is-open')){
+      nav.classList.add('is-on');
+      nav.classList.remove('is-hidden');
+      hidden = false; lastY = y;
+      return;
+    }
     var past = cardSec.getBoundingClientRect().bottom < 80;
     nav.classList.toggle('is-on', past);
     if(!past){ lastY = y; return; }
@@ -814,6 +887,8 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     else if(y < lastY - 8){ if(hidden){ nav.classList.remove('is-hidden'); hidden = false; } }
     lastY = y;
   }
+  window.KH = window.KH || {};
+  window.KH.navScroll = navScroll;
   toggle.addEventListener('click', function(){
     var open = links.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -897,6 +972,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       try{ localStorage.setItem('kh-key', answer); }catch(e){}
       window.KH.start(data.photos);
       window.KH.observe();
+      if(window.KH.navScroll) window.KH.navScroll();
     }).catch(function(err){
       if(quiet) return;
       note.classList.add('is-bad');
@@ -924,13 +1000,14 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 
 <script>
 /* ============================================================
-   BEHIND THE WALL: photos, voting, adventures, stories, RSVP.
-   Runs only once the content has been decrypted and injected.
+   BEHIND THE WALL: photos, voting, menu, adventures, RSVP.
+   One state object drives both the section cards and the RSVP
+   recap, so editing either place updates the other.
    ============================================================ */
 (function(){
   /* Paste the Apps Script /exec URL here, and use the same SHARED_KEY as Code.gs. */
-  var ENDPOINT   = 'https://script.google.com/macros/s/AKfycbx5E5oAe_Eaw-QF1F6rmP0TpvfulXxQBdpl_07JKXp_6BH4DNnZLTouFX8PAH5OgP_n/exec';
-  var SHARED_KEY = 'Our-wedding-is-the-key-2027';
+  var ENDPOINT   = '';
+  var SHARED_KEY = 'change-this-string';
   var FALLBACK_EMAIL = 'hello@katieandhugo.com';
 
   var STORIES = [
@@ -942,8 +1019,19 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     'Switzerland. Two people ignoring a perfectly good mountain.'
   ];
 
-  var PHOTOS = [], votes = {}, myVote = null, stories = [], adventures = [], menu = '', current = 0;
-  var ADVENTURES = ['Pioneer Sports bike ride', 'KODI rafting, Browns Canyon', 'Fairplay Rodeo'];
+  var DISHES = [
+    { key:'trout',   label:'Rainbow trout almondine' },
+    { key:'sirloin', label:'Pepper-crusted sirloin' },
+    { key:'veg',     label:'Vegetarian plate' },
+    { key:'kids',    label:'Chicken tenders (children)' }
+  ];
+
+  /* the single source of truth */
+  var meals  = { trout:0, sirloin:0, veg:0, kids:0 };
+  var advs   = {};        // key -> { label, adults, kids }
+  var brunch = { on:false, guests:1 };
+
+  var PHOTOS = [], votes = {}, myVote = null, stories = [], current = 0;
   var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
 
   function post(action, data){
@@ -976,12 +1064,141 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     });
   }
   function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function num(v, lo, hi){ v = parseInt(v, 10); if(isNaN(v)) v = lo; return Math.max(lo, Math.min(hi, v)); }
   function normalise(o){
     var out = {};
     Object.keys(o || {}).forEach(function(k){ out[parseInt(k, 10)] = o[k]; });
     return out;
   }
+  var TICK = '<span class="tick">&check;</span> ';
 
+  /* ---------- menu ---------- */
+  function dishLabel(k){
+    for(var i=0;i<DISHES.length;i++) if(DISHES[i].key === k) return DISHES[i].label;
+    return k;
+  }
+  function paintMenu(){
+    document.querySelectorAll('#menuList [data-dish]').forEach(function(card){
+      var k = card.dataset.dish, on = meals[k] > 0;
+      card.classList.toggle('is-on', on);
+      var foot = card.querySelector('.pickfoot');
+      foot.innerHTML = on
+        ? '<button class="minibtn is-on" type="button" data-act="unpick">' + TICK + 'Selected</button>'
+          + '<span class="qty"><label>How many</label>'
+          + '<input type="number" min="1" max="12" value="' + meals[k] + '" data-qty="dish"></span>'
+        : '<button class="minibtn" type="button" data-act="pick">Select this</button>';
+    });
+    var parts = DISHES.filter(function(d){ return meals[d.key] > 0; })
+                      .map(function(d){ return '<b>' + meals[d.key] + ' &times; ' + esc(d.label) + '</b>'; });
+    var b = document.getElementById('menuBasket');
+    if(b) b.innerHTML = parts.length ? 'On your table: ' + parts.join(', ') : 'Nothing chosen yet';
+  }
+
+  /* ---------- adventures ---------- */
+  function paintAdv(){
+    document.querySelectorAll('#advList [data-adv]').forEach(function(card){
+      var k = card.dataset.adv, a = advs[k];
+      card.classList.toggle('is-on', !!a);
+      var foot = card.querySelector('.pickfoot');
+      var learn = '<a class="minibtn" href="' + esc(card.dataset.link) + '" target="_blank" rel="noopener">Learn more</a>';
+      foot.innerHTML = a
+        ? learn + '<button class="minibtn is-on" type="button" data-act="unreg">' + TICK + 'Registered</button>'
+          + '<span class="qty"><label>Adults</label><input type="number" min="0" max="12" value="' + a.adults + '" data-qty="adults"></span>'
+          + '<span class="qty"><label>Children</label><input type="number" min="0" max="12" value="' + a.kids + '" data-qty="kids"></span>'
+        : learn + '<button class="minibtn" type="button" data-act="reg">Register</button>';
+    });
+    var names = Object.keys(advs).map(function(k){
+      return '<b>' + esc(advs[k].label) + '</b> (' + advs[k].adults + ' + ' + advs[k].kids + ')';
+    });
+    var b = document.getElementById('advBasket');
+    if(b) b.innerHTML = names.length ? 'Saved with your RSVP: ' + names.join(', ') : 'Nothing selected yet';
+  }
+
+  /* ---------- brunch ---------- */
+  function paintBrunch(){
+    var box = document.getElementById('brunchJoin');
+    if(box) box.innerHTML = brunch.on
+      ? '<button class="minibtn is-on" type="button" data-act="unbrunch">' + TICK + 'Coming</button>'
+        + '<span class="qty"><label>How many</label>'
+        + '<input type="number" min="1" max="12" value="' + brunch.guests + '" data-qty="brunch"></span>'
+      : '<button class="minibtn" type="button" data-act="brunch">Count us in</button>';
+
+    var recap = document.getElementById('rsvpBrunch');
+    if(recap) recap.innerHTML = brunch.on
+      ? '<div class="recap__row"><span>Joining brunch</span>'
+        + '<span class="qty"><input type="number" min="1" max="12" value="' + brunch.guests + '" data-qty="brunch"></span></div>'
+      : '<p class="recap__none">Not joining. Tick it in the schedule above if you change your mind.</p>';
+  }
+
+  /* ---------- rsvp recap ---------- */
+  function paintRecap(){
+    var meal = document.getElementById('rsvpMeals');
+    if(meal){
+      var rows = DISHES.filter(function(d){ return meals[d.key] > 0; }).map(function(d){
+        return '<div class="recap__row"><span>' + esc(d.label) + '</span>'
+             + '<span class="qty"><input type="number" min="0" max="12" value="' + meals[d.key]
+             + '" data-qty="dish" data-dish="' + d.key + '"></span></div>';
+      });
+      meal.innerHTML = rows.length ? rows.join('')
+        : '<p class="recap__none">Nothing chosen. Pick your meals in the menu above.</p>';
+    }
+    var tot = document.getElementById('rsvpTotal');
+    if(tot){
+      var adults = meals.trout + meals.sirloin + meals.veg;
+      tot.textContent = (adults + meals.kids) === 0 ? ''
+        : adults + ' adult' + (adults === 1 ? '' : 's') + ', ' + meals.kids + ' child' + (meals.kids === 1 ? '' : 'ren') + '.';
+    }
+    var ad = document.getElementById('rsvpAdv');
+    if(ad){
+      var keys = Object.keys(advs);
+      ad.innerHTML = keys.length ? keys.map(function(k){
+        return '<div class="recap__row"><span>' + esc(advs[k].label) + '</span>'
+          + '<span class="qty"><label>Adults</label><input type="number" min="0" max="12" value="' + advs[k].adults
+          + '" data-qty="adults" data-adv="' + k + '">'
+          + '<label>Children</label><input type="number" min="0" max="12" value="' + advs[k].kids
+          + '" data-qty="kids" data-adv="' + k + '"></span></div>';
+      }).join('') : '<p class="recap__none">None yet. Register above for anything you fancy.</p>';
+    }
+  }
+
+  function drawAll(){ paintMenu(); paintAdv(); paintBrunch(); paintRecap(); }
+
+  /* ---------- one click handler for every control ---------- */
+  function onClick(e){
+    var btn = e.target.closest('[data-act]');
+    if(!btn) return;
+    var act = btn.dataset.act;
+    var card = btn.closest('[data-dish], [data-adv]');
+
+    if(act === 'pick')   { meals[card.dataset.dish] = 1; }
+    if(act === 'unpick') { meals[card.dataset.dish] = 0; }
+    if(act === 'reg')    { advs[card.dataset.adv] = { label: card.dataset.label, adults:1, kids:0 }; }
+    if(act === 'unreg')  { delete advs[card.dataset.adv]; }
+    if(act === 'brunch') { brunch.on = true; }
+    if(act === 'unbrunch'){ brunch.on = false; }
+    drawAll();
+  }
+
+  function onInput(e){
+    var input = e.target.closest('[data-qty]');
+    if(!input) return;
+    var kind = input.dataset.qty;
+    if(kind === 'brunch'){ brunch.guests = num(input.value, 1, 12); paintBrunch(); return; }
+    if(kind === 'dish'){
+      var card = input.closest('[data-dish]');
+      var key = input.dataset.dish || (card && card.dataset.dish);
+      meals[key] = num(input.value, 0, 12);
+      paintMenu(); paintRecap(); return;
+    }
+    var host = input.closest('[data-adv]');
+    var akey = input.dataset.adv || (host && host.dataset.adv);
+    if(akey && advs[akey]){
+      advs[akey][kind === 'adults' ? 'adults' : 'kids'] = num(input.value, 0, 12);
+      paintAdv(); paintRecap();
+    }
+  }
+
+  /* ---------- photos, voting, stories ---------- */
   function drawMosaic(){
     mosaic.innerHTML = PHOTOS.map(function(src, i){
       var badge = (myVote === i) ? '<span class="tile__badge">Your pick</span>' : '';
@@ -1032,56 +1249,13 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       if(r && r.votes){ votes = normalise(r.votes); paintVote(); drawStandings(); }
     });
   }
-
   function drawWall(){
     var el = document.getElementById('storyWall');
     if(!el) return;
     if(!stories.length){ el.innerHTML = '<p class="story__empty">No stories yet. Someone has to go first.</p>'; return; }
     el.innerHTML = stories.slice().reverse().map(function(st){
-      return '<article class="story"><p>&ldquo;' + esc(st.text) + '&rdquo;</p>'
-           + '<footer>' + esc(st.name || 'Anonymous') + '</footer></article>';
+      return '<article class="story"><p>&ldquo;' + esc(st.text) + '&rdquo;</p></article>';
     }).join('');
-  }
-  /* the section tiles and the RSVP form are two views of the same choice */
-  function drawBasket(){
-    var b = document.getElementById('advBasket');
-    if(b) b.innerHTML = adventures.length
-      ? 'Saved with your RSVP: <b>' + adventures.map(esc).join('</b>, <b>') + '</b>'
-      : 'Nothing selected yet';
-
-    var m = document.getElementById('menuBasket');
-    if(m) m.innerHTML = menu ? 'Your main course: <b>' + esc(menu) + '</b>' : 'Nothing chosen yet';
-
-    document.querySelectorAll('#advList .adv__card').forEach(function(c){
-      c.classList.toggle('is-on', adventures.indexOf(c.dataset.adv) > -1);
-    });
-    document.querySelectorAll('#menuList .adv__card').forEach(function(c){
-      c.classList.toggle('is-on', c.dataset.menu === menu);
-    });
-    document.querySelectorAll('#rsvpAdv .chip').forEach(function(c){
-      c.classList.toggle('is-on', adventures.indexOf(c.dataset.adv) > -1);
-    });
-    var sel = document.getElementById('r-menu');
-    if(sel && menu && sel.value !== menu) sel.value = menu;
-  }
-
-  function buildChips(){
-    var host = document.getElementById('rsvpAdv');
-    if(!host) return;
-    host.innerHTML = ADVENTURES.map(function(a){
-      return '<button class="chip" type="button" data-adv="' + esc(a) + '">' + esc(a) + '</button>';
-    }).join('');
-    host.addEventListener('click', function(e){
-      var c = e.target.closest('.chip');
-      if(!c) return;
-      toggleAdv(c.dataset.adv);
-    });
-  }
-
-  function toggleAdv(name){
-    var i = adventures.indexOf(name);
-    if(i > -1) adventures.splice(i, 1); else adventures.push(name);
-    drawBasket();
   }
 
   window.KH = window.KH || {};
@@ -1099,7 +1273,10 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     var saved = local('kh-my-vote');
     myVote = (saved === null || saved === '') ? null : parseInt(saved, 10);
 
-    drawMosaic(); drawStandings(); drawWall(); drawBasket();
+    drawAll(); drawMosaic(); drawStandings(); drawWall();
+
+    document.getElementById('private').addEventListener('click', onClick);
+    document.getElementById('private').addEventListener('input', onInput);
 
     mosaic.addEventListener('click', function(e){
       var t = e.target.closest('.tile');
@@ -1117,37 +1294,16 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       if(e.key === 'ArrowRight') openLb((current + 1) % PHOTOS.length);
     });
 
-    buildChips();
-
-    var advList = document.getElementById('advList');
-    if(advList) advList.addEventListener('click', function(e){
-      var c = e.target.closest('.adv__card');
-      if(c && c.dataset.adv) toggleAdv(c.dataset.adv);
-    });
-
-    var menuList = document.getElementById('menuList');
-    if(menuList) menuList.addEventListener('click', function(e){
-      var c = e.target.closest('.adv__card');
-      if(!c || !c.dataset.menu) return;
-      menu = (menu === c.dataset.menu) ? '' : c.dataset.menu;   // single choice, tap again to clear
-      drawBasket();
-    });
-
-    var menuSel = document.getElementById('r-menu');
-    if(menuSel) menuSel.addEventListener('change', function(){ menu = menuSel.value; drawBasket(); });
-
     var storyBtn = document.getElementById('storyBtn');
     if(storyBtn) storyBtn.addEventListener('click', function(){
-      var name = local('kh-name') || '';        // filled in once they RSVP
+      var name = local('kh-name') || '';
       var text = document.getElementById('s-text').value.trim();
       var n = document.getElementById('storyNote');
       n.hidden = false;
       if(text.length < 10){ n.textContent = 'A few more words than that.'; return; }
-      stories.push({ name:name, text:text });
+      stories.push({ text:text });
       document.getElementById('s-text').value = '';
-      n.textContent = name
-        ? 'Added, and matched to your RSVP.'
-        : 'Added. It will be matched to you when you RSVP.';
+      n.textContent = name ? 'Added, and matched to your RSVP.' : 'Added. It will be matched to you when you RSVP.';
       drawWall();
       post('story', { name:name, voter:voterId(), text:text }).then(function(r){
         if(r && r.stories){ stories = r.stories; drawWall(); }
@@ -1161,18 +1317,28 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       var name = val('r-name');
       n.hidden = false;
       if(!name){ n.textContent = 'Add your name first, then send.'; return; }
+      var adults = meals.trout + meals.sirloin + meals.veg;
+      if(adults + meals.kids === 0){ n.textContent = 'Choose your meals above before sending.'; return; }
+
       var data = {
         name: name, email: val('r-email'),
-        adults: val('r-guests'), children: val('r-kids'),
-        menu: val('r-menu'), drinks: val('r-drinks'), brunch: val('r-brunch'),
-        adventures: adventures.join(', ') || 'none',
+        adults: adults, children: meals.kids,
+        trout: meals.trout, sirloin: meals.sirloin, veg: meals.veg,
+        menu: DISHES.filter(function(d){ return meals[d.key] > 0; })
+                    .map(function(d){ return meals[d.key] + ' x ' + d.label; }).join(', '),
+        drinks: val('r-drinks'),
+        brunch: brunch.on ? 'Yes, ' + brunch.guests : 'No',
+        adventures: Object.keys(advs).map(function(k){
+          return advs[k].label + ' (' + advs[k].adults + ' adults, ' + advs[k].kids + ' children)';
+        }).join('; ') || 'none',
         voter: voterId(), notes: val('r-notes')
       };
-      local('kh-name', name);   // so any story they wrote can be matched to them
+
       rsvpBtn.disabled = true;
       n.textContent = 'Sending…';
       post('rsvp', data).then(function(r){
         rsvpBtn.disabled = false;
+        local('kh-name', name);
         if(r && r.ok){
           n.textContent = data.email
             ? 'Thank you. A confirmation is on its way to ' + data.email + '.'
