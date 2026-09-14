@@ -1060,13 +1060,32 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
 
   function post(action, data){
-    if(!ENDPOINT || !SHARED_KEY) return Promise.resolve({ ok:false, offline:true });
+    if(!ENDPOINT){
+      console.warn('[KH] No ENDPOINT set in config.js — nothing will be recorded.');
+      return Promise.resolve({ ok:false, why:'no-endpoint' });
+    }
+    if(!SHARED_KEY){
+      console.warn('[KH] Key not derived yet. Unlock the site first.');
+      return Promise.resolve({ ok:false, why:'no-key' });
+    }
     data.action = action; data.key = SHARED_KEY;
     return fetch(ENDPOINT, {
       method:'POST',
       headers:{ 'Content-Type':'text/plain;charset=utf-8' },
       body: JSON.stringify(data)
-    }).then(function(r){ return r.json(); }).catch(function(){ return { ok:false, offline:true }; });
+    }).then(function(r){ return r.json(); })
+      .then(function(r){
+        if(r && r.error) console.warn('[KH] The form replied:', r.error,
+          r.error === 'bad key'
+            ? '\n   → Apps Script is running an older version. Redeploy it: Deploy > Manage deployments > pencil > Version: New version.'
+            : '');
+        return r;
+      })
+      .catch(function(err){
+        console.warn('[KH] Could not reach the form:', err,
+          '\n   → Check the ENDPOINT in config.js ends in /exec, and that the deployment allows access to "Anyone".');
+        return { ok:false, why:'network' };
+      });
   }
   function load(){
     if(!ENDPOINT || !SHARED_KEY) return Promise.resolve(null);
@@ -1443,8 +1462,9 @@ main{position:relative;z-index:20;background:var(--olive-800)}
           showPdfBtn('');
           return;
         }
-        n.textContent = 'We could not reach the form just now. Save your answers as a PDF and email it to '
-          + FALLBACK_EMAIL + ', and we will enter it by hand.';
+        n.textContent = 'We could not record that just now. Save your answers as a PDF and email it to '
+          + FALLBACK_EMAIL + ', and we will enter it by hand.'
+          + (r && r.error ? ' (' + r.error + ')' : '');
         showPdfBtn('');
       });
     });
