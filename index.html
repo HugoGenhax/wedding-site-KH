@@ -187,12 +187,12 @@ a{color:inherit}
 
 /* --- the envelope --- */
 .envelope-layer{
-  position:absolute;inset:0;display:grid;place-items:center;
+  position:absolute;inset:0 0 7rem 0;display:grid;place-items:center;
   transform-style:preserve-3d;will-change:transform;
 }
 .envelope{
   position:relative;
-  width:min(760px,92vw);
+  width:min(760px, 92vw, calc(56svh * 1.52));
   aspect-ratio:1.52/1;
   transform-style:preserve-3d;
   filter:drop-shadow(0 40px 60px rgba(0,0,0,.5));
@@ -582,6 +582,23 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 }
 .chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
 .tick{font-size:.9em;line-height:1}
+.linkish{background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  color:var(--gold-soft);text-decoration:underline;text-underline-offset:3px}
+.linkish:hover{color:var(--gold)}
+
+/* the printable summary, hidden until the browser prints */
+#printArea{display:none}
+@media print{
+  body{background:#fff !important;color:#000 !important}
+  body > *{display:none !important}
+  #printArea{display:block !important;padding:0;color:#000;font-family:Georgia,serif}
+  #printArea h1{font-size:22pt;letter-spacing:.12em;text-transform:uppercase;margin:0 0 2pt}
+  #printArea .sub{font-size:9pt;letter-spacing:.2em;text-transform:uppercase;color:#555;margin:0 0 22pt}
+  #printArea h2{font-size:10pt;letter-spacing:.18em;text-transform:uppercase;color:#555;
+    margin:18pt 0 6pt;border-bottom:1px solid #ccc;padding-bottom:3pt}
+  #printArea p{font-size:11pt;margin:3pt 0}
+  #printArea .foot{margin-top:26pt;font-size:9pt;color:#666}
+}
 .card--wide{grid-column:1/-1}
 .sched__intro{color:var(--cream-dim);max-width:var(--measure);margin:.2rem 0 0}
 
@@ -646,6 +663,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 </style>
 </head>
 <body>
+<script src="config.js"></script>
 
 <header class="nav" id="nav">
   <a class="nav__mark" href="#top">Katie &amp; Hugo</a>
@@ -763,9 +781,9 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   <section class="wall" id="wall">
     <div class="wall__box reveal">
       <span class="eyebrow">Guests only</span>
-      <p class="wall__q">What is our dog's name?</p>
-      <input id="wallAnswer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="One word">
-      <p class="wall__note" id="wallNote">It's on your invitation. Everything else — the schedule, the addresses, the pictures — is behind this.</p>
+      <p class="wall__q">Password</p>
+      <input id="wallAnswer" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="From your invitation">
+      <p class="wall__note" id="wallNote">&nbsp;</p>
       <button class="btn" id="wallGo" type="button">Unlock</button>
     </div>
   </section>
@@ -790,6 +808,8 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     </div>
   </div>
 </div>
+
+<div id="printArea" aria-hidden="true"></div>
 
 <footer class="foot">
   <p class="foot__mark">Katie &amp; Hugo</p>
@@ -954,7 +974,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     return crypto.subtle.importKey('raw', enc.encode(answer), 'PBKDF2', false, ['deriveKey'])
       .then(function(base){
         return crypto.subtle.deriveKey(
-          { name:'PBKDF2', salt:b64(rec.s), iterations:150000, hash:'SHA-256' },
+          { name:'PBKDF2', salt:b64(rec.s), iterations:600000, hash:'SHA-256' },
           base, { name:'AES-GCM', length:256 }, false, ['decrypt']);
       })
       .then(function(key){ return crypto.subtle.decrypt({ name:'AES-GCM', iv:b64(rec.n) }, key, b64(rec.c)); })
@@ -970,13 +990,13 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       box.classList.add('is-open');
       wall.style.display = 'none';
       try{ localStorage.setItem('kh-key', answer); }catch(e){}
-      window.KH.start(data.photos);
+      window.KH.start(data.photos, answer);
       window.KH.observe();
       if(window.KH.navScroll) window.KH.navScroll();
     }).catch(function(err){
       if(quiet) return;
       note.classList.add('is-bad');
-      note.textContent = 'Not quite. Ask whoever sent you the invitation.';
+      note.textContent = 'That is not it. Check your invitation, hyphens and all.';
       throw err;
     });
   }
@@ -1006,9 +1026,14 @@ main{position:relative;z-index:20;background:var(--olive-800)}
    ============================================================ */
 (function(){
   /* Paste the Apps Script /exec URL here, and use the same SHARED_KEY as Code.gs. */
-  var ENDPOINT   = '';
-  var SHARED_KEY = 'change-this-string';
-  var FALLBACK_EMAIL = 'hello@katieandhugo.com';
+  var CFG = window.KH_CONFIG || {};
+  var ENDPOINT   = CFG.ENDPOINT   || '';
+  var FALLBACK_EMAIL = CFG.EMAIL  || 'hello@katieandhugo.com';
+
+  /* The write key is derived from the riddle answer at runtime, so it is
+     never in the repository. Only a guest who has unlocked the site can
+     produce it. Code.gs derives the same value from the same answer. */
+  var SHARED_KEY = '';
 
   var STORIES = [
     'Central Park. Two people conducting extensive due diligence.',
@@ -1035,7 +1060,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
 
   function post(action, data){
-    if(!ENDPOINT) return Promise.resolve({ ok:false, offline:true });
+    if(!ENDPOINT || !SHARED_KEY) return Promise.resolve({ ok:false, offline:true });
     data.action = action; data.key = SHARED_KEY;
     return fetch(ENDPOINT, {
       method:'POST',
@@ -1044,8 +1069,9 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     }).then(function(r){ return r.json(); }).catch(function(){ return { ok:false, offline:true }; });
   }
   function load(){
-    if(!ENDPOINT) return Promise.resolve(null);
-    return fetch(ENDPOINT).then(function(r){ return r.json(); }).catch(function(){ return null; });
+    if(!ENDPOINT || !SHARED_KEY) return Promise.resolve(null);
+    return fetch(ENDPOINT + '?key=' + encodeURIComponent(SHARED_KEY))
+      .then(function(r){ return r.json(); }).catch(function(){ return null; });
   }
   function local(k, v){
     try{
@@ -1071,6 +1097,17 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     return out;
   }
   var TICK = '<span class="tick">&check;</span> ';
+
+  /** SHA-256 of the answer, hex. Cheap on both sides, and reproducible in Apps Script. */
+  function deriveKey(answer){
+    if(!answer || !window.crypto || !crypto.subtle) return Promise.resolve('');
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode('kh|' + answer))
+      .then(function(buf){
+        return Array.prototype.map.call(new Uint8Array(buf), function(b){
+          return ('0' + b.toString(16)).slice(-2);
+        }).join('');
+      }).catch(function(){ return ''; });
+  }
 
   /* ---------- menu ---------- */
   function dishLabel(k){
@@ -1259,8 +1296,17 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   }
 
   window.KH = window.KH || {};
-  window.KH.start = function(photos){
+  window.KH.start = function(photos, answer){
     PHOTOS = photos || [];
+    deriveKey(answer).then(function(k){
+      SHARED_KEY = k;
+      load().then(function(r){
+        if(!r) return;
+        votes   = normalise(r.votes);
+        stories = Array.isArray(r.stories) ? r.stories : [];
+        drawMosaic(); drawStandings(); drawWall();
+      });
+    });
     mosaic    = document.getElementById('mosaic');
     standings = document.getElementById('standings');
     standRows = document.getElementById('standRows');
@@ -1310,19 +1356,49 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       });
     });
 
-    var rsvpBtn = document.getElementById('rsvpBtn');
-    if(rsvpBtn) rsvpBtn.addEventListener('click', function(){
-      var n = document.getElementById('rsvpNote');
-      var val = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
-      var name = val('r-name');
-      n.hidden = false;
-      if(!name){ n.textContent = 'Add your name first, then send.'; return; }
-      var adults = meals.trout + meals.sirloin + meals.veg;
-      if(adults + meals.kids === 0){ n.textContent = 'Choose your meals above before sending.'; return; }
+    /* a printable copy, for emailing to us or just keeping */
+    function summaryHtml(d){
+      function line(k, v){ return v ? '<p><strong>' + esc(k) + ':</strong> ' + esc(v) + '</p>' : ''; }
+      return '<h1>Katie &amp; Hugo</h1>'
+        + '<p class="sub">RSVP &middot; 8 July 2027 &middot; Ski Tip Lodge, Keystone, Colorado</p>'
+        + '<h2>Who</h2>'
+        + line('Name', d.name) + line('Email', d.email)
+        + line('Party', d.adults + ' adult(s), ' + d.children + ' child(ren)')
+        + '<h2>Dinner on the Thursday</h2>'
+        + '<p>' + esc(d.menu || 'Nothing chosen') + '</p>'
+        + '<h2>The rest of the weekend</h2>'
+        + line('Wednesday drinks', d.drinks)
+        + line('Friday brunch', d.brunch)
+        + line('Adventures', d.adventures)
+        + (d.notes ? '<h2>Notes</h2><p>' + esc(d.notes) + '</p>' : '')
+        + '<p class="foot">Saved ' + new Date().toLocaleDateString() + '. '
+        + 'If you are emailing this to us, send it to ' + esc(FALLBACK_EMAIL) + '.</p>';
+    }
+    var lastData = null;
+    function showPdfBtn(lead){
+      var host = document.getElementById('rsvpNote');
+      if(document.getElementById('pdfBtn')) return;
+      var b = document.createElement('button');
+      b.id = 'pdfBtn'; b.type = 'button'; b.className = 'btn';
+      b.style.marginTop = '1rem';
+      b.textContent = 'Save my answers as a PDF';
+      b.addEventListener('click', function(){
+        var area = document.getElementById('printArea');
+        area.innerHTML = summaryHtml(lastData || collect());
+        window.print();
+      });
+      host.parentNode.insertBefore(b, host.nextSibling);
+      if(lead) host.textContent = lead + ' ' + host.textContent;
+    }
 
-      var data = {
-        name: name, email: val('r-email'),
-        adults: adults, children: meals.kids,
+    /* everything the RSVP sends, gathered in one place */
+    function collect(){
+      var val = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      return {
+        name: val('r-name'),
+        email: val('r-email'),
+        adults: meals.trout + meals.sirloin + meals.veg,
+        children: meals.kids,
         trout: meals.trout, sirloin: meals.sirloin, veg: meals.veg,
         menu: DISHES.filter(function(d){ return meals[d.key] > 0; })
                     .map(function(d){ return meals[d.key] + ' x ' + d.label; }).join(', '),
@@ -1331,34 +1407,48 @@ main{position:relative;z-index:20;background:var(--olive-800)}
         adventures: Object.keys(advs).map(function(k){
           return advs[k].label + ' (' + advs[k].adults + ' adults, ' + advs[k].kids + ' children)';
         }).join('; ') || 'none',
-        voter: voterId(), notes: val('r-notes')
+        voter: voterId(),
+        notes: val('r-notes')
       };
+    }
 
+    var always = document.getElementById('pdfAlways');
+    if(always) always.addEventListener('click', function(){
+      var d = collect();
+      if(!d.name){ var nn = document.getElementById('rsvpNote'); nn.hidden = false;
+        nn.textContent = 'Add your name first, so we know whose answers these are.'; return; }
+      document.getElementById('printArea').innerHTML = summaryHtml(d);
+      window.print();
+    });
+
+    var rsvpBtn = document.getElementById('rsvpBtn');
+    if(rsvpBtn) rsvpBtn.addEventListener('click', function(){
+      var n = document.getElementById('rsvpNote');
+      n.hidden = false;
+      var data = collect();
+      if(!data.name){ n.textContent = 'Add your name first, then send.'; return; }
+      if(data.adults + data.children === 0){ n.textContent = 'Choose your meals above before sending.'; return; }
+
+      lastData = data;
       rsvpBtn.disabled = true;
       n.textContent = 'Sending…';
       post('rsvp', data).then(function(r){
         rsvpBtn.disabled = false;
-        local('kh-name', name);
+        local('kh-name', data.name);
         if(r && r.ok){
           n.textContent = data.email
             ? 'Thank you. A confirmation is on its way to ' + data.email + '.'
             : 'Thank you, we have you down.';
           rsvpBtn.textContent = 'Sent';
+          showPdfBtn('');
           return;
         }
-        var body = Object.keys(data).map(function(k){ return k + ': ' + data[k]; }).join('\n');
-        window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject='
-          + encodeURIComponent('RSVP — ' + name) + '&body=' + encodeURIComponent(body);
-        n.textContent = 'Opening your mail app. If nothing happens, send these details to ' + FALLBACK_EMAIL + '.';
+        n.textContent = 'We could not reach the form just now. Save your answers as a PDF and email it to '
+          + FALLBACK_EMAIL + ', and we will enter it by hand.';
+        showPdfBtn('');
       });
     });
 
-    load().then(function(r){
-      if(!r) return;
-      votes   = normalise(r.votes);
-      stories = Array.isArray(r.stories) ? r.stories : [];
-      drawMosaic(); drawStandings(); drawWall();
-    });
   };
 })();
 </script>
