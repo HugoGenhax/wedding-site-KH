@@ -495,6 +495,14 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   display:block;font-family:var(--util);font-size:.64rem;letter-spacing:.26em;
   text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;
 }
+label.check{
+  display:flex;gap:.65rem;align-items:flex-start;cursor:pointer;
+  font-family:var(--body);font-size:1rem;letter-spacing:0;text-transform:none;
+  color:var(--cream);margin-bottom:0;
+}
+label.check input[type="checkbox"]{
+  flex:none;width:1.05em;height:1.05em;margin-top:.25em;accent-color:var(--gold);cursor:pointer;
+}
 .field input,.field select,.field textarea{
   width:100%;background:transparent;border:0;border-bottom:1px solid rgba(201,166,98,.4);
   color:var(--cream);font-family:var(--body);font-size:1rem;padding:.55rem .1rem;border-radius:0;
@@ -1063,6 +1071,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   var meals  = { trout:0, sirloin:0, veg:0, kids:0 };
   var advs   = {};        // key -> { label, adults, kids }
   var brunch = { on:false, guests:1 };
+  var childcare = false;
 
   var PHOTOS = [], votes = {}, myVote = null, stories = [], current = 0;
   var mosaic, standings, standRows, lb, lbMedia, lbStory, lbVote, lbTally;
@@ -1194,6 +1203,14 @@ main{position:relative;z-index:20;background:var(--olive-800)}
       : '<p class="recap__none">Not joining. Tick it in the schedule above if you change your mind.</p>';
   }
 
+  /* ---------- childcare ---------- */
+  function paintChildcare(){
+    var a = document.getElementById('childcareCheck');
+    var b = document.getElementById('rsvpChildcare');
+    if(a) a.checked = childcare;
+    if(b) b.checked = childcare;
+  }
+
   /* ---------- rsvp recap ---------- */
   function paintRecap(){
     var meal = document.getElementById('rsvpMeals');
@@ -1225,10 +1242,15 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     }
   }
 
-  function drawAll(){ paintMenu(); paintAdv(); paintBrunch(); paintRecap(); }
+  function drawAll(){ paintMenu(); paintAdv(); paintBrunch(); paintChildcare(); paintRecap(); }
 
   /* ---------- one click handler for every control ---------- */
   function onClick(e){
+    if(e.target.id === 'childcareCheck' || e.target.id === 'rsvpChildcare'){
+      childcare = e.target.checked;
+      paintChildcare();
+      return;
+    }
     var btn = e.target.closest('[data-act]');
     if(!btn) return;
     var act = btn.dataset.act;
@@ -1396,6 +1418,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
         + '<h2>The rest of the weekend</h2>'
         + line('Wednesday drinks', d.drinks)
         + line('Adventures', d.adventures)
+        + line('Childcare', d.childcare === 'Yes' ? 'Requested' : '')
         + (d.notes ? '<h2>Notes</h2><p>' + esc(d.notes) + '</p>' : '')
         + '<p class="foot">Saved ' + new Date().toLocaleDateString() + '. '
         + 'If you are emailing this to us, send it to ' + esc(FALLBACK_EMAIL) + '.</p>';
@@ -1432,6 +1455,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
         adventures: Object.keys(advs).map(function(k){
           return advs[k].label + ' (' + advs[k].adults + ' adults, ' + advs[k].kids + ' children)';
         }).join('; ') || 'none',
+        childcare: childcare ? 'Yes' : 'No',
         voter: voterId(),
         notes: val('r-notes')
       };
