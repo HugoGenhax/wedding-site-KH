@@ -170,6 +170,10 @@ a{color:inherit}
 .hero__amp{
   display:block;font-family:var(--display);font-style:italic;text-transform:none;
   font-size:.36em;color:var(--gold-soft);letter-spacing:0;margin:.12em 0;opacity:.9;
+  /* Marcellus has no true italic, so the browser fakes it with a skew — that
+     shifts the glyph's visual weight left of center even though the box
+     itself is centered. Small optical nudge to put the ink back in the middle. */
+  padding-left:.14em;
 }
 .hero__meta{
   margin-top:1.6rem;font-family:var(--util);font-weight:300;
