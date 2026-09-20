@@ -10,6 +10,6 @@
    in Apps Script and never reaches a browser.
    ===================================================================== */
 window.KH_CONFIG = {
-  ENDPOINT: 'https://script.google.com/macros/s/AKfycbx5E5oAe_Eaw-QF1F6rmP0TpvfulXxQBdpl_07JKXp_6BH4DNnZLTouFX8PAH5OgP_n/exec',                          // the Apps Script /exec URL
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbzQH-mpL6ZuhCD87keHVpon9LuLoO3YW52YpzYJi_YBEMjdtdAvotb7R0CpLHRNyrqR/exec',                          // the Apps Script /exec URL
   EMAIL:    'hello@katieandhugo.com'     // fallback address on the RSVP
 };
