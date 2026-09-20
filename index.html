@@ -1039,7 +1039,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
     'Colorado. We hiked to a waterfall to prove we were the sort of people who hike to waterfalls.',
     'The Loire, where we stopped pretending this was casual.',
     'Dingle. He asked. She said yes, then \u201cwait, are you serious?\u201d',
-    'Nine thousand feet, no witnesses, both of us silently over-promising.',
+    'Nine thousand feet, no witnesses.',
     'Switzerland. Two people ignoring a perfectly good mountain.'
   ];
 
@@ -1386,7 +1386,6 @@ main{position:relative;z-index:20;background:var(--olive-800)}
         + '<p>' + esc(d.menu || 'Nothing chosen') + '</p>'
         + '<h2>The rest of the weekend</h2>'
         + line('Wednesday drinks', d.drinks)
-        + line('Friday brunch', d.brunch)
         + line('Adventures', d.adventures)
         + (d.notes ? '<h2>Notes</h2><p>' + esc(d.notes) + '</p>' : '')
         + '<p class="foot">Saved ' + new Date().toLocaleDateString() + '. '
@@ -1421,7 +1420,6 @@ main{position:relative;z-index:20;background:var(--olive-800)}
         menu: DISHES.filter(function(d){ return meals[d.key] > 0; })
                     .map(function(d){ return meals[d.key] + ' x ' + d.label; }).join(', '),
         drinks: val('r-drinks'),
-        brunch: brunch.on ? 'Yes, ' + brunch.guests : 'No',
         adventures: Object.keys(advs).map(function(k){
           return advs[k].label + ' (' + advs[k].adults + ' adults, ' + advs[k].kids + ' children)';
         }).join('; ') || 'none',
