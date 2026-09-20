@@ -170,10 +170,16 @@ a{color:inherit}
 .hero__amp{
   display:block;font-family:var(--display);font-style:italic;text-transform:none;
   font-size:.36em;color:var(--gold-soft);letter-spacing:0;margin:.12em 0;opacity:.9;
-  /* Marcellus has no true italic, so the browser fakes it with a skew — that
-     shifts the glyph's visual weight left of center even though the box
-     itself is centered. Small optical nudge to put the ink back in the middle. */
-  padding-left:.14em;
+  /* Not a font/italic issue — verified in a real browser. The reveal script
+     (see paint()/finish() below) sets a dynamic padding-left on #heroNames to
+     optically recenter "KATIE"/"HUGO", which have letter-spacing and so carry
+     extra trailing space after their last letter that throws off
+     text-align:center. This span has letter-spacing:0 — no such trailing gap —
+     but still inherits that shrunk, right-shifted content box since it fills
+     the same parent. Cancel exactly one parent-em of that padding, expressed
+     in THIS element's own em (font-size is a fixed .36em of the parent, so
+     this ratio holds at every viewport): 0.1 / 0.36 = 0.2778. */
+  margin-left:-.2778em;
 }
 .hero__meta{
   margin-top:1.6rem;font-family:var(--util);font-weight:300;
