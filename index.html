@@ -650,9 +650,6 @@ label.check input[type="checkbox"]{
 .qty input:focus{outline:none;border-bottom-color:var(--gold)}
 .adv__card.is-on{border-color:var(--gold);background:rgba(201,166,98,.12)}
 
-/* the join box on the brunch row */
-.joinbox{margin-top:.9rem;display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
-
 /* rsvp recap lines */
 .recap{display:grid;gap:.55rem;padding-top:.4rem}
 .recap__row{display:flex;align-items:center;justify-content:space-between;gap:1rem;
@@ -1070,7 +1067,6 @@ label.check input[type="checkbox"]{
   /* the single source of truth */
   var meals  = { trout:0, sirloin:0, veg:0, kids:0 };
   var advs   = {};        // key -> { label, adults, kids }
-  var brunch = { on:false, guests:1 };
   var childcare = false;
 
   var PHOTOS = [], votes = {}, myVote = null, stories = [], current = 0;
@@ -1187,21 +1183,6 @@ label.check input[type="checkbox"]{
     if(b) b.innerHTML = names.length ? 'Saved with your RSVP: ' + names.join(', ') : 'Nothing selected yet';
   }
 
-  /* ---------- brunch ---------- */
-  function paintBrunch(){
-    var box = document.getElementById('brunchJoin');
-    if(box) box.innerHTML = brunch.on
-      ? '<button class="minibtn is-on" type="button" data-act="unbrunch">' + TICK + 'Coming</button>'
-        + '<span class="qty"><label>How many</label>'
-        + '<input type="number" min="1" max="12" value="' + brunch.guests + '" data-qty="brunch"></span>'
-      : '<button class="minibtn" type="button" data-act="brunch">Count us in</button>';
-
-    var recap = document.getElementById('rsvpBrunch');
-    if(recap) recap.innerHTML = brunch.on
-      ? '<div class="recap__row"><span>Joining brunch</span>'
-        + '<span class="qty"><input type="number" min="1" max="12" value="' + brunch.guests + '" data-qty="brunch"></span></div>'
-      : '<p class="recap__none">Not joining. Tick it in the schedule above if you change your mind.</p>';
-  }
 
   /* ---------- childcare ---------- */
   function paintChildcare(){
@@ -1242,7 +1223,7 @@ label.check input[type="checkbox"]{
     }
   }
 
-  function drawAll(){ paintMenu(); paintAdv(); paintBrunch(); paintChildcare(); paintRecap(); }
+  function drawAll(){ paintMenu(); paintAdv(); paintChildcare(); paintRecap(); }
 
   /* ---------- one click handler for every control ---------- */
   function onClick(e){
@@ -1260,8 +1241,6 @@ label.check input[type="checkbox"]{
     if(act === 'unpick') { meals[card.dataset.dish] = 0; }
     if(act === 'reg')    { advs[card.dataset.adv] = { label: card.dataset.label, adults:1, kids:0 }; }
     if(act === 'unreg')  { delete advs[card.dataset.adv]; }
-    if(act === 'brunch') { brunch.on = true; }
-    if(act === 'unbrunch'){ brunch.on = false; }
     drawAll();
   }
 
@@ -1269,7 +1248,6 @@ label.check input[type="checkbox"]{
     var input = e.target.closest('[data-qty]');
     if(!input) return;
     var kind = input.dataset.qty;
-    if(kind === 'brunch'){ brunch.guests = num(input.value, 1, 12); paintBrunch(); return; }
     if(kind === 'dish'){
       var card = input.closest('[data-dish]');
       var key = input.dataset.dish || (card && card.dataset.dish);
