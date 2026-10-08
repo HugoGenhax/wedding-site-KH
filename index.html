@@ -595,7 +595,7 @@ label.check input[type="checkbox"]{
 .chips{display:flex;flex-wrap:wrap;gap:.6rem;padding-top:.3rem}
 .chip{
   font-family:var(--util);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  border:1px solid rgba(201,166,98,.4);color:var(--cream-dim);background:transparent;
+  border:1px solid var(--gold-soft);color:var(--cream);background:rgba(201,166,98,.18);
   padding:.6rem 1rem;border-radius:1px;cursor:pointer;transition:all .25s;
 }
 .chip.is-on{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
@@ -635,7 +635,7 @@ label.check input[type="checkbox"]{
 .pickfoot{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 .minibtn{
   font-family:var(--util);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
-  border:1px solid rgba(201,166,98,.5);background:transparent;color:var(--gold-soft);
+  border:1px solid var(--gold-soft);background:rgba(201,166,98,.18);color:var(--gold-soft);
   padding:.6rem 1.1rem;border-radius:1px;cursor:pointer;text-decoration:none;display:inline-block;
   transition:background .25s,color .25s,border-color .25s;
 }
@@ -1390,7 +1390,8 @@ label.check input[type="checkbox"]{
         + '<p class="sub">RSVP &middot; 8 July 2027 &middot; Ski Tip Lodge, Keystone, Colorado</p>'
         + '<h2>Who</h2>'
         + line('Name', d.name) + line('Email', d.email)
-        + line('Party', d.adults + ' adult(s), ' + d.children + ' child(ren)')
+        + line('Attending', d.attending === 'not-attending' ? 'Unable to attend' : 'Yes')
+        + (d.attending === 'not-attending' ? '' : line('Party', d.adults + ' adult(s), ' + d.children + ' child(ren)'))
         + '<h2>Dinner on the Thursday</h2>'
         + '<p>' + esc(d.menu || 'Nothing chosen') + '</p>'
         + '<h2>The rest of the weekend</h2>'
@@ -1424,6 +1425,7 @@ label.check input[type="checkbox"]{
       return {
         name: val('r-name'),
         email: val('r-email'),
+        attending: val('r-attending') || 'attending',
         adults: meals.trout + meals.sirloin + meals.veg,
         children: meals.kids,
         trout: meals.trout, sirloin: meals.sirloin, veg: meals.veg,
@@ -1454,7 +1456,9 @@ label.check input[type="checkbox"]{
       n.hidden = false;
       var data = collect();
       if(!data.name){ n.textContent = 'Add your name first, then send.'; return; }
-      if(data.adults + data.children === 0){ n.textContent = 'Choose your meals above before sending.'; return; }
+      if(data.attending !== 'not-attending' && data.adults + data.children === 0){
+        n.textContent = 'Choose your meals above before sending.'; return;
+      }
 
       lastData = data;
       rsvpBtn.disabled = true;
