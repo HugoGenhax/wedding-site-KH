@@ -328,6 +328,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
 .card{
   border:1px solid rgba(201,166,98,.24);padding:1.6rem 1.5rem;border-radius:2px;
   background:linear-gradient(180deg,rgba(78,92,63,.16),transparent);
+  display:flex;flex-direction:column;
 }
 .card h3{font-family:var(--display);font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin:.4rem 0 .7rem}
 .card p{font-size:.97em;color:var(--cream-dim);margin:0}
@@ -339,7 +340,7 @@ main{position:relative;z-index:20;background:var(--olive-800)}
   transition:background .25s,color .25s,border-color .25s;
 }
 .minibtn:hover{background:var(--gold);border-color:var(--gold);color:var(--olive-900)}
-.pickfoot{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.pickfoot{margin-top:auto;padding-top:1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 .code{
   font-family:var(--util);font-size:.85em;letter-spacing:.12em;color:var(--olive-900);
   background:var(--gold);padding:.15em .5em;border-radius:2px;font-weight:600;

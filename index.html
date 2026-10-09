@@ -571,6 +571,7 @@ label.check input[type="checkbox"]{
   background:linear-gradient(180deg,rgba(78,92,63,.16),transparent);
   cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;
   transition:border-color .3s,background .3s;
+  display:flex;flex-direction:column;
 }
 .adv__card:hover{border-color:rgba(201,166,98,.6)}
 .adv__card.is-on{border-color:var(--gold);background:rgba(201,166,98,.12)}
@@ -632,7 +633,7 @@ label.check input[type="checkbox"]{
 .square__addr:hover{color:var(--cream);border-bottom-color:rgba(201,166,98,.5)}
 
 /* select / register controls inside cards */
-.pickfoot{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.pickfoot{margin-top:auto;padding-top:1.3rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 .minibtn{
   font-family:var(--util);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
   border:1px solid var(--gold-soft);background:rgba(201,166,98,.18);color:var(--gold-soft);
